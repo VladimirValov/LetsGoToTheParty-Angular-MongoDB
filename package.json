@@ -11,11 +11,11 @@
   },
   "scripts": {
     "postinstall": "bower install",
-
     "update-deps": "npm update",
     "postupdate-deps": "bower update",
-
     "start": "http-server -a localhost -p 8000 -c-1 ./app"
-
+  },
+  "dependencies": {
+    "mongodb": "^2.2.26"
   }
 }
