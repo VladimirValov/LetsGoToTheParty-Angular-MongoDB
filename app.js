@@ -17,10 +17,11 @@ const db = mongoose.connection,
       urlDB = 'mongodb://goparty:goparty@ds161487.mlab.com:61487/go-party';
 
 //EXPRESS
-
+const PORT = process.env.VCAP_APP_PORT || 7000;
+app.set();
 app.use( bodyParser.json() );
 
-app.get('/*', function(req, res) {
+app.get('/', function(req, res) {
   res.setHeader('Context-Type', 'text/html; charset=utf8');
   console.log('Получен запрос по адресу ', req.url);
 
@@ -33,6 +34,16 @@ app.get('/*', function(req, res) {
   else {
     res.status(404);
   }
+  res.end();
+});
+
+app.get("/people", function (req, res) {
+console.log("Поиск начался");
+People.find({}).
+  then( (peoples) => {
+    console.log("Поиск завершен");
+    peoples.forEach( (el)=> console.log(el) )
+  });
   res.end();
 });
 
@@ -58,7 +69,7 @@ db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function() {
   console.log('Mongoose connected to mLab');
 
-  app.listen(7000, function () {
+  app.listen(PORT, function () {
     console.log("partyApp listening on port 7000!")
   })
 });
