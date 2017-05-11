@@ -16,6 +16,10 @@
     "start": "http-server -a localhost -p 8000 -c-1 ./app"
   },
   "dependencies": {
+<<<<<<< HEAD
     "mongodb": "^2.2.26"
+=======
+    "express": "^4.15.2"
+>>>>>>> create static webserver
   }
 }
