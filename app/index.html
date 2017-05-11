@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width">
 
     <title>Let's go to the Party!</title>
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="app.css" />
 
-    <script src="bower_components/angular/angular.js"></script>
-    <script src="app.module.js"></script>
+  <!--  <script src="bower_components/angular/angular.js"></script> -->
+
 
   </head>
   <body>
@@ -32,7 +31,7 @@
         </div>
 
         <div class="form-input-wrapper">
-          <input id="drink" type="text" name="drink" list="drinkList" placeholder="Choose please" required/>
+          <input id="drink" type="text" name="drink" list="drinkList" value="Water" placeholder="Choose please" required/>
           <datalist id="drinkList">
             <select>
               <option label="Water" value="Water"></option>
@@ -51,15 +50,39 @@
   		<fieldset class="form-name">
   			<legend> About you?</legend>
   			<div class="form-input-wrapper">
-  				<input id="name" name="name" pattern="([a-zA-Z]{3,30}\s*)+[a-zA-Z]{3,30}" placeholder="Ivan Petrov" required>
-  				<label for="name">Your Name</label>
+  				<input id="people" name="people" pattern="([a-zA-Z]{3,30}\s*)+[a-zA-Z]{3,30}" value="Ivan" placeholder="Ivan Petrov" required>
+  				<label for="people">Your Name</label>
   			</div>
       </fieldset>
 
-  		<button class="form-submit-btn" type="submit" value="Submit "> Submit Answer </button>
+  		<button id="submitBtn" class="form-submit-btn" type="button"  value="Submit "> Submit Answer </button>
 
     </form>
+    <script src="send.js"></script>
 
+    <script type="text/javascript">
 
+    submitBtn.onclick =  function () {
+      console.log("Submit");
+
+      let data = {
+        "youGo" : go.value,
+        "youDrink" : drink.value,
+        "youName" : people.value
+      }
+
+    console.log( data );
+    sendDataXhr( data );
+    }
+
+    function sendDataXhr( data ) {
+      let xhr = new XMLHttpRequest ();
+
+      xhr.open('POST','/save');
+      xhr.setRequestHeader('Content-Type', 'application/json; charset=utf8')
+      xhr.send( JSON.stringify(data) );
+    }
+
+    </script>
   </body>
 </html>

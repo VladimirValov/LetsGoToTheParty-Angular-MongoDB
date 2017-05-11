@@ -16,6 +16,14 @@
     "start": "http-server -a localhost -p 8000 -c-1 ./app"
   },
   "dependencies": {
+<<<<<<< HEAD
+<<<<<<< HEAD
     "mongodb": "^2.2.26"
+=======
+=======
+    "body-parser": "^1.17.1",
+>>>>>>> Send data from Site to Express
+    "express": "^4.15.2"
+>>>>>>> create static webserver
   }
 }

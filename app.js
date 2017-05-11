@@ -1,5 +1,7 @@
 'use strict';
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 
 const MongoClient = require('mongodb').MongoClient,
       assert = require('assert'),
@@ -53,3 +55,46 @@ MongoClient.connect(urlDB, function(err, db) {
       db.close();
   });
 });
+=======
+const fs = require('fs');
+const express = require('express');
+const app = express();
+=======
+const fs = require('fs'),
+      express = require('express'),
+      app = express(),
+      bodyParser = require('body-parser');
+>>>>>>> Send data from Site to Express
+
+
+app.use( bodyParser.json() );
+app.get('/*', function(req, res) {
+  res.setHeader('Context-Type', 'text/html; charset=utf8');
+
+  console.log('Получен запрос по адресу ', req.url);
+
+  let fileName = (req.url == "/") ? 'app/index.html' : 'app' + req.url;
+
+  console.log("fileName = " + fileName);
+
+  if( fs.existsSync(fileName) ) {
+    let content =fs.readFileSync(fileName, {encoding: 'utf-8'});
+    res.write( content );
+  }
+  else {
+    res.status(404);
+  }
+
+  res.end();
+});
+
+app.post("/save", function (req, res ) {
+  console.log("поступил запрос POST ", req.body);
+  //console.log(req);
+  res.end();
+});
+
+app.listen(7000, function () {
+  console.log('Example app listening on port 7000!')
+})
+>>>>>>> create static webserver
