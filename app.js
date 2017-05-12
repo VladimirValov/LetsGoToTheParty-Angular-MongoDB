@@ -3,13 +3,17 @@ const fs = require('fs');
 const express = require('express'),
       app = express(),
       bodyParser = require('body-parser');
+//HANDLEBARS
+const exphbs = require('express-handlebars');
 
 //MONGOOSE
 const mongoose = require('mongoose');
+
 const peopleSchema = mongoose.Schema({
-   youGo: Boolean,
-   youDrink: String,
-   youName: String
+  youName: String,
+  youPassword: String,
+  youGo: Boolean,
+  youDrink: String
 });
 const People = mongoose.model('People', peopleSchema);
 
@@ -18,37 +22,78 @@ const db = mongoose.connection,
 
 //EXPRESS
 const PORT = process.env.VCAP_APP_PORT || 7000;
-app.set();
-app.use( bodyParser.json() );
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
-app.get('/', function(req, res) {
-  res.setHeader('Context-Type', 'text/html; charset=utf8');
+app.use( bodyParser.json() );
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+
+app.get("/auth", function (req, res) {
+  console.log("Запрос авторизации");
+   res.render('formAuth', {} );
+});
+
+app.post("/auth", function (req, res) {
+  console.log("Запрос авторизации", req.body);
+  //console.log("Запрос авторизации", req);
+  let param = req.body;
+  param.error = "";
+
+ if(!param.youName){
+   console.log("Логин не заполнен!");
+   param.error = "Логин не заполнен!" ;
+ }
+  if(!param.youPassword) {
+    console.log("Логин не заполнен!");
+    param.error += " Пароль не заполнен!" ;
+   }
+
+   if(param.error) {
+     res.render('formAuth', { helloUser: param.error  } );
+   }
+
+   else  {
+     console.log("Форма заполнена корректно");
+
+     People.findOne({ youName: req.body.youName }).
+       then( (user) => {
+         console.log("Поиск завершен", user);
+
+         if ( !user ){
+           res.render('formAuth', { helloUser: "User " + req.body.youName + " is not found" } );
+         }
+         else if (req.body.youPassword != user.youName) {
+            res.render('formAuth', {
+              helloUser: "Password is not correct",
+              youName: req.body.youName
+             } );
+         }
+         else { //Success
+           res.redirect("/answer/" + user.youName) ;
+         }
+
+       });
+    }
+
+});
+
+app.get('/answer/:userLogin', function(req, res) {
   console.log('Получен запрос по адресу ', req.url);
 
-  let fileName = (req.url == "/") ? 'app/index.html' : 'app' + req.url;
+  People.findOne({ youName: req.params.userLogin }).
+    then( (user) => {
+      console.log("Поиск завершен",user);
 
-  if( fs.existsSync(fileName) ) {
-    let content =fs.readFileSync(fileName, {encoding: 'utf-8'});
-    res.write( content );
-  }
-  else {
-    res.status(404);
-  }
-  res.end();
-});
-
-app.get("/people", function (req, res) {
-console.log("Поиск начался");
-People.find({}).
-  then( (peoples) => {
-    console.log("Поиск завершен");
-    peoples.forEach( (el)=> console.log(el) )
+  res.render('formGoParty', {
+    helloUser: "Здравствуйте!" + user.youName,
+    youGo : (user.youGo) ?"value=" + user.youGo : "",
+    youDrink :(user.youDrink) ?"value=" + user.youDrink : ""
   });
-  res.end();
+  });
 });
 
-
-app.post("/save", function (req, res ) {
+app.post('/answer/*', function(req, res) {
   console.log("поступил запрос POST ", req.body);
 
   let people = new People( req.body );
@@ -58,7 +103,48 @@ app.post("/save", function (req, res ) {
      console.log("Успешно записано", people);
    });
 
-   res.end();
+   res.redirect("/answer");
+});
+
+
+app.get("/answer", function (req, res) {
+console.log("Поиск начался");
+People.find({}).
+  then( (result) => {
+    console.log("Поиск завершен", result);
+    res.render('allAnswer', { items: result } );
+  });
+});
+
+app.get("/clear", function (req, res) {
+  console.log("Восстановить исходное состояние");
+  People.remove({}).
+    then( ()=>{ res.write("Database Clean"); res.end(); } );
+});
+
+app.get("/init", function (req, res) {
+  console.log("Восстановить исходное состояние");
+
+  for(let i = 0; i < 10; i++) {
+    let people = new People( {
+      youName: "User" + i,
+      youPassword: "" + i + i + i,
+      youGo: "",
+      youDrink: ""
+    });
+
+    people.save( (err, people) => {
+       if(err) return console.log(err);
+       console.log("Успешно записано", people);
+    }) ;
+    }
+    res.redirect("/answer");
+    });
+
+
+app.get("/*", function (req, res) {
+res.redirect("/auth");
+
 });
 
 //Connect to DB and Start Webserver
