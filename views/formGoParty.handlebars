@@ -1,0 +1,36 @@
+<form class="form-wrapper" id="formParty" method="post">
+  <div class="form-Intro">
+    <h1>Go to the Party!</h1>
+  </div>
+    {{{  helloUser   }}}
+
+
+  <fieldset class="form-questions">
+    <legend>Please answer!</legend>
+
+    <div class="form-input-wrapper">
+        <select id="go" name="go" {{youGo}} required >
+
+          <option value="true">Yes</option>
+          <option value="false"> No</option>
+        </select>
+        <label for="go">Will you go?</label>
+    </div>
+
+    <div class="form-input-wrapper">
+      <input id="drink" type="text" name="drink" list="drinkList" {{{youDrink}}} placeholder="Choose please" required/>
+      <datalist id="drinkList">
+        <select>
+          <option label="Water" value="Water"></option>
+          <option label="Juice" value="Juice"></option>
+          <option label="Wine" value="Wine"></option>
+          <option label="Beer" value="Beer"></option>
+          <option label="Vodka" value="Vodka"></option>
+        </select>
+      </datalist>
+      <label for="drinkList">What are you drink?</label>
+    </div>
+  </fieldset>
+
+  <button id="submitBtn" class="form-submit-btn" type="submit"  value="Submit "> Submit Answer </button>
+</form>
