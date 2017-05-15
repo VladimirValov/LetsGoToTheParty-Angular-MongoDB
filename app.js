@@ -8,11 +8,26 @@ const logger = require('morgan');
 const favicon = require('serve-favicon');
 
 const index = require('./routes/index');
-const auth = require('./routes/auth.js');
+const login = require('./routes/login.js');
 const answers = require('./routes/answers.js');
 
 const PORT = process.env.VCAP_APP_PORT || 7000;
 const app = express();
+
+const session = require('express-session');
+app.set('trust proxy', 1)
+app.use(session({
+  secret: 'no-secret',
+  resave: false,
+  saveUnitialized: false,
+  cookie: {secure: true}
+}));
+
+
+
+
+
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -28,7 +43,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/auth', auth );
+app.use('/login', login );
 app.use('/answers', answers);
 
 app.use(function(err, req, res, next) {
@@ -39,22 +54,12 @@ app.use(function(err, req, res, next) {
 
 //MONGOOSE
 const mongoose = require('mongoose');
-
-const peopleSchema = mongoose.Schema({
-  youName: String,
-  youPassword: String,
-  youGo: Boolean,
-  youDrink: String
-});
-
-const People = mongoose.model('People', peopleSchema);
-
-const db = mongoose.connection,
-      urlDB = 'mongodb://goparty:goparty@ds161487.mlab.com:61487/go-party';
-
-//Connect to DB and Start Webserver
-
+const urlDB = require('./config.json').urlDB;
 mongoose.connect( urlDB );
+
+const db = mongoose.connection;
+
+
 db.on('error', console.error.bind(console, 'connection error'));
 
 db.once('open', function() {
