@@ -1,17 +1,24 @@
 var express = require('express');
 var router = express.Router();
 
-router.get('/:user_id', function(req, res) {
-  console.log('Получен запрос по адресу ', req.url);
+const mongoose = require('mongoose');
+const User = require('../models/users.js');
 
-  People.findOne({ youName: req.params.userLogin }).
+
+router.get('/:user_id', function(req, res) {
+  userName = req.params.user_id;
+  console.log('Получен запрос по адресу ', req.url);
+  console.log('Session --- ', req.session);
+
+  User.findOne({ userName: userName }).
     then( (user) => {
       console.log("Поиск завершен",user);
 
   res.render('formGoParty', {
-    helloUser: "Здравствуйте!" + user.youName,
-    youGo : (user.youGo) ?"value=" + user.youGo : "",
-    youDrink :(user.youDrink) ?"value=" + user.youDrink : ""
+    helloUser: "Здравствуйте!" + user.userName
+//    ,
+//    youGo : (user.youGo) ?"value=" + user.youGo : "",
+//    youDrink :(user.youDrink) ?"value=" + user.youDrink : ""
   });
   });
 });

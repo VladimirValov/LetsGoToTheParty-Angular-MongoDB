@@ -54,7 +54,9 @@ app.use(function(err, req, res, next) {
 
 //MONGOOSE
 const mongoose = require('mongoose');
-const urlDB = require('./config.json').urlDB;
+//const urlDB = require('./config.json').urlDB;
+const urlDB = require('./config.json').dbLocal;
+
 mongoose.connect( urlDB );
 
 const db = mongoose.connection;

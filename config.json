@@ -1,3 +1,4 @@
-{
-  "urlDB" : "mongodb://goparty:goparty@ds161487.mlab.com:61487/go-party"
+ {
+  "urlDB" : "mongodb://goparty:goparty@ds161487.mlab.com:61487/go-party",
+  "dbLocal" : "mongodb://localhost/dbparty"
 }

@@ -7,7 +7,7 @@ const User = require('../models/users.js');
 
 router.get("/", function (req, res) {
   console.log("Запрос авторизации");
-   res.render('formAuth', {} );
+   res.render('formAuth', {Sing In} );
 });
 
 router.post("/", function (req, res) {
@@ -37,7 +37,7 @@ router.post("/", function (req, res) {
  else  {
    console.log("Форма заполнена корректно");
 
-//Добавление пользователя в базу
+//Добавление пользователя в базуgi
   let newUser = new User( req.body );
 
   newUser.save( (err, user) => {
