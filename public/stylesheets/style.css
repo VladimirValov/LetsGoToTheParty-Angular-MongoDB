@@ -24,8 +24,8 @@ fieldset + fieldset {
 }
 
 .form-input-wrapper {
-  display: flex;
-  flex-direction: column-reverse;
+	display: flex;
+	flex-direction: column-reverse;
 }
 
 .form-input-wrapper label {
@@ -35,19 +35,19 @@ fieldset + fieldset {
 }
 
 @media (min-width: 800px) {
-  .form-input-wrapper {
-    display: flex;
-    flex-direction: row-reverse;
-    align-items: center;
-  }
+	.form-input-wrapper {
+		display: flex;
+		flex-direction: row-reverse;
+		align-items: center;
+	}
 }
 
 input, placeholder, select {
-  color: #999;
+	color: #999;
 }
 
 input, select{
-  min-height: 34px;
+	min-height: 34px;
 	padding: 0px;
 	font-size: 17px;
 	border: 1px solid #ebebeb;
@@ -60,14 +60,14 @@ input, select{
 
 
 .form-input-wrapper input, select {
-  flex: 0 0 50%;
-  border: 1px solid #ccc;
-  color: #222;
+	flex: 0 0 50%;
+	border: 1px solid #ccc;
+	color: #222;
 }
 
 .form-input-wrapper label {
-  flex: 1 0 50%;
-  font-size: 15px;
+	flex: 1 0 50%;
+	font-size: 15px;
 
 }
 
@@ -81,13 +81,13 @@ legend {
 	color: #FFF;
 	margin-bottom: 10px;
 	border-radius: 2px;
-  background-color: #739327;
+	background-color: #739327;
 }
 
 .form-input-wrapper input:focus, {
 	border: 1px solid #236a7e;
-  transform: scale(1.03);
-  z-index: 3;
+	transform: scale(1.03);
+	z-index: 3;
 }
 
 label:after {
@@ -96,8 +96,8 @@ label:after {
 	position: relative;
 	display: inline-flex;
 	margin-left: .2ch;
-  transition: color, 1s;
-  color: red;
+	transition: color, 1s;
+	color: red;
 }
 
 input:required:valid + label:after, select:required:valid + label:after  {
@@ -108,7 +108,21 @@ input:required:valid + label:after, select:required:valid + label:after  {
 	padding: 0;
 	margin: 1em 0;
 	font-size: 1rem;
-  position: relative;
+	position: relative;
 	width: 300px;
 	height: 44px;
+}
+
+.error_alert {
+	padding : 10px;
+	color: red;
+}
+
+.hello {
+	font-size: 2rem;
+	padding:10px 20px;
+}
+
+a {
+	margin: 0 10px;
 }

@@ -1,0 +1,27 @@
+<form class="form-wrapper" id="formParty" method="post">
+  <div class="form-Intro">
+    <h1>Форма входа на сайт</h1>
+  </div>
+    <div class="hello"> {{{  helloUser   }}} </div>
+
+    <fieldset class="form-name">
+      <legend>Sign In</legend>
+      <div class="error_alert"> {{{ errorName }}} </div>
+      <div class="error_alert"> {{{ errorPassword }}} </div>
+
+      <div class="form-input-wrapper">
+        <input id="userName" name="userName"  {{{ userName }}}  placeholder="Ivan Petrov" >
+        <label for="userName"> User Name</label>
+      </div>
+
+        <div class="form-input-wrapper">
+        <input type="password" id="password" name="password"  placeholder="password" >
+        <label for="password"> Password </label>
+      </div>
+
+    </fieldset>
+
+  <button id="submitBtn" class="form-submit-btn" type="submit"  value="Submit "> Log In </button>
+  <a href="/register"> Зарегистрироваться </a>
+
+</form>
