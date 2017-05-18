@@ -24,13 +24,13 @@ http://localhost:7000/answer/User1
 *Рассылка email  node mailer
 *Ограничение к странице результатов
 
-git clone https://github.com/VladimirValov/LetsGoToTheParty-Angular-MongoDB.git
+git clone https://github.com/VladimirValov/LetsGoToTheParty-Express-MongoDB.git
 
 ## INSTALL
-'npm install'
+`npm install`
 
 ## Run
-'node app.js'
+`node app.js`
 
 ### Страница авторизации
 http://localhost:7000/login
