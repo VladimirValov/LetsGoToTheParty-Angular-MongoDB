@@ -112,3 +112,17 @@ input:required:valid + label:after, select:required:valid + label:after  {
 	width: 300px;
 	height: 44px;
 }
+
+.error_alert {
+	padding : 10px;
+	color: red;
+}
+
+.hello {
+	font-size: 2rem;
+	padding:10px 20px;
+}
+
+a {
+	margin: 0 10px;
+}

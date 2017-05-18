@@ -5,11 +5,15 @@ const mongoose = require('mongoose');
 const User = require('../models/users.js');
 
 
-router.get('/:user_id', function(req, res) {
-  userName = req.params.user_id;
+router.get('/:userName', function(req, res) {
+  userName = req.params.userName;
   console.log('Получен запрос по адресу ', req.url);
-  console.log('Session --- ', req.session);
+  console.log("req.session.idUser = " + req.session.idUser);
+  res.render('formGoParty', {
+    helloUser: "Здравствуйте!" + req.session.idUser
+  });
 
+  /*
   User.findOne({ userName: userName }).
     then( (user) => {
       console.log("Поиск завершен",user);
@@ -21,6 +25,10 @@ router.get('/:user_id', function(req, res) {
 //    youDrink :(user.youDrink) ?"value=" + user.youDrink : ""
   });
   });
+
+  */
+
+
 });
 
 router.post('/*', function(req, res) {

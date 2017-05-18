@@ -6,8 +6,10 @@ const User = require('../models/users.js');
 
 
 router.get("/", function (req, res) {
+  
   console.log("Запрос авторизации");
-   res.render('formAuth', {Sing In} );
+  console.log("req.session.idUser = " + req.session.idUser);
+   res.render('formAuth', {});
 });
 
 router.post("/", function (req, res) {
@@ -17,36 +19,53 @@ router.post("/", function (req, res) {
       errorPassword;
 
   console.log("Запрос авторизации", req.body);
-  console.log(req.session);
 
+  if (!userName) {
+    console.log("Логин не заполнен!");
+    errorName = "Логин не заполнен!" ;
+  }
 
- if (!userName) {
-   console.log("Логин не заполнен!");
-   errorName = "Логин не заполнен!" ;
- }
-
- if (!password) {
+  if (!password) {
     console.log("Пароль не заполнен!");
     errorPassword = "Пароль не заполнен!" ;
- }
+  }
 
- if (errorName && errorPassword) {
-     res.render('formAuth', { helloUser: errorName + errorPassword  } );
- }
+//
+  if (errorName || errorPassword) {
 
- else  {
-   console.log("Форма заполнена корректно");
+     return res.render('formAuth', {
+       errorName: errorName,
+       errorPassword: errorPassword
+     });
+  }
 
-//Добавление пользователя в базуgi
+
+  console.log("Форма заполнена корректно");
+
+  //Добавление пользователя в базуgi
   let newUser = new User( req.body );
 
-  newUser.save( (err, user) => {
-    if(err) { return console.log(err); }
-    console.log("Учетная запись успешно создана", user);
-    req.session.cookie.id = user._id;
-    res.redirect('/answers/' + userName)
+  User.findOne({userName: userName})
+    .then( (user) => {
+      console.log("Результат пойска: ", user);
+
+      if ( !user ) {
+         errorName = "Такого пользователя в базе не обнаружено";
+         return res.render ('formAuth',{errorName: errorName});
+      }
+
+      if (user.password == password) {
+          console.log("Успешная авторизация");
+          req.session.idUser = user._id;
+          res.redirect("/");
+      }
+      else {
+        console.log("неверный пароль");
+        errorPassword = "Неверный пароль";
+        return res.render ('formAuth',{errorPassword: errorPassword});
+      }
   });
-  }
+
 });
 
 module.exports = router;
