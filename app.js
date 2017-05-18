@@ -1,23 +1,26 @@
 'use strict';
 
 const express = require('express');
+const session = require('express-session');
+
 const path = require('path');
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 const favicon = require('serve-favicon');
 
-const index = require('./routes/index');
-const login = require('./routes/login.js');
-const register = require('./routes/register.js');
-const logout = require('./routes/logout.js');
-const answers = require('./routes/answers.js');
+//MONGOOSE
+const mongoose = require('mongoose');
+const urlDB = require('./config.json')
 
 const PORT = process.env.VCAP_APP_PORT || 7000;
 const app = express();
 
+const indexRoute = require('./routes/index');
+const loginRoute = require('./routes/login.js');
+const registerRoute = require('./routes/register.js');
+const logoutRoute = require('./routes/logout.js');
+//const answerRoutes = require('./routes/answers.js');
 
-const session = require('express-session');
-app.set('trust proxy', 1)
 app.use(session({
   secret: 'no-secret',
   resave: false,
@@ -36,11 +39,16 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended:false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/login', login );
-app.use('/register', register );
-app.use('/logout', logout );
-app.use('/answers', answers);
+app.use(function(err, req, res, next) {
+  console.log("req.session.idUser = " + req.session.idUser);
+  next();
+});
+
+app.use('/', indexRoute);
+app.use('/login', loginRoute );
+app.use('/register', registerRoute );
+app.use('/logout', logoutRoute );
+//app.use('/answers', answersRoute);
 
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;
@@ -48,18 +56,12 @@ app.use(function(err, req, res, next) {
 });
 
 
-//MONGOOSE
-const mongoose = require('mongoose');
-
-//const urlDB = require('./config.json').urlDB;
-const urlDB = require('./config.json').dbLocal;
-mongoose.connect( urlDB );
+mongoose.connect( urlDB.dbLocal );
 const db = mongoose.connection;
-
 
 db.on('error', console.error.bind(console, 'connection error'));
 db.once('open', function() {
-  console.log('Mongoose connected to mLab');
+  console.log('Mongoose connected to DB');
 
   app.listen(PORT, function () {
     console.log("partyApp listening on port " + PORT + "!")
