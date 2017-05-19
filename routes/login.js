@@ -37,8 +37,11 @@ router.post("/", function (req, res) {
       console.log("Результат пойска: ", user);
 
       if ( !user ) {
-         error.email = "Такого пользователя в базе не обнаружено";
-         return res.render ('formLogin',{ errorName: error.email });
+        console.log("Такого пользователя в базе не обнаружено");
+
+         return res.render ('formLogin',{
+           email: "Такого пользователя в базе не обнаружено"
+         });
       }
 
       if ( user.password == params.password ) {
@@ -51,8 +54,8 @@ router.post("/", function (req, res) {
 
       else {
         console.log("неверный пароль");
-        error.password = "Неверный пароль";
-        return res.render ('formLogin',{ errorPassword: error.password });
+
+        return res.render ('formLogin',{ password: "Неверный пароль" });
       }
   });
 });

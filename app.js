@@ -16,9 +16,12 @@ const PORT = process.env.VCAP_APP_PORT || 7000;
 const app = express();
 
 const indexRoute = require('./routes/index');
+
 const loginRoute = require('./routes/login.js');
 const registerRoute = require('./routes/register.js');
 const logoutRoute = require('./routes/logout.js');
+
+const createEventRoute = require('./routes/createEvent.js');
 //const answerRoutes = require('./routes/answers.js');
 
 app.use(session({
@@ -48,6 +51,8 @@ app.use('/', indexRoute);
 app.use('/login', loginRoute );
 app.use('/register', registerRoute );
 app.use('/logout', logoutRoute );
+
+app.use('/createEvent', createEventRoute );
 //app.use('/answers', answersRoute);
 
 app.use(function(err, req, res, next) {

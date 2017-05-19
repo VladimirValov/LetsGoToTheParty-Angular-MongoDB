@@ -48,7 +48,7 @@ input, placeholder, select {
 
 input, select{
 	min-height: 34px;
-	padding: 0px;
+	padding: 0 10px;
 	font-size: 17px;
 	border: 1px solid #ebebeb;
 	outline: none;
@@ -60,13 +60,13 @@ input, select{
 
 
 .form-input-wrapper input, select {
-	flex: 0 0 50%;
+	flex: 0 0 48%;
 	border: 1px solid #ccc;
 	color: #222;
 }
 
 .form-input-wrapper label {
-	flex: 1 0 50%;
+	flex: 1 0 48%;
 	font-size: 15px;
 
 }
@@ -114,8 +114,13 @@ input:required:valid + label:after, select:required:valid + label:after  {
 }
 
 .error_alert {
-	padding : 10px;
+	padding :10px;
 	color: red;
+	text-align: right;
+}
+.error_alert p{
+	padding: 0;
+	margin: 0;
 }
 
 .hello {
@@ -125,4 +130,12 @@ input:required:valid + label:after, select:required:valid + label:after  {
 
 a {
 	margin: 0 10px;
+}
+.container {
+	width: 95%;
+	max-width: 1200px;
+	padding: 10px;
+}
+.right {
+	text-align: right;
 }
