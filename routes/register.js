@@ -3,6 +3,7 @@ var router = express.Router();
 
 const mongoose = require('mongoose');
 const User = require('../models/users.js');
+const userValidate = require('../validators/user.js');
 
 
 router.get("/", function (req, res) {
@@ -12,42 +13,26 @@ router.get("/", function (req, res) {
   res.render('formRegister', {});
 });
 
+
 router.post("/", function (req, res) {
   console.log("Запрос авторизации", req.body);
 
   const params = {
-    userName: req.body.userName,
+    email: req.body.email,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
     password: req.body.password,
     passwordRepeat: req.body.passwordRepeat
   }
 
-  const error = {};
 
-  //Валидация формы регистрации
-  if (!params.userName) {
-   console.log("Логин не заполнен!");
-   error.userName = "Логин не заполнен!" ;
-  }
+  const validateError = userValidate.formRegister(params);
+   console.log(validateError );
 
-  if ( !params.password || !params.passwordRepeat ) {
-    console.log("Введите пароль и подтверждение!");
-    error.password = "Введите пароль и подтверждение!" ;
-  }
+   if ( Object.keys( validateError ).length ) {
+      return res.render('formRegister', validateError );
+    }
 
-  else if (params.password != params.passwordRepeat) {
-    console.log("Введеные пароли не совпадают");
-    error.password = "Введеные пароли не совпадают!" ;
-  }
-
-
-  if ( Object.keys(error).length ) {
-
-    return res.render('formRegister', {
-      title: "Форма регистрации",
-      errorName: error.userName,
-      errorPassword: error.password
-    });
-  }
 
 
   console.log("Форма заполнена корректно");
@@ -63,6 +48,8 @@ router.post("/", function (req, res) {
         res.redirect('/');
     })
     .catch( (err) => { console.log(err) } );
+
+
 });
 
 module.exports = router;

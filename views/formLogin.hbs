@@ -5,17 +5,19 @@
     <div class="hello"> {{{  helloUser   }}} </div>
 
     <fieldset class="form-name">
-      <legend>Sign In</legend>
-      <div class="error_alert"> {{{ errorName }}} </div>
-      <div class="error_alert"> {{{ errorPassword }}} </div>
+      <legend>Log In</legend>
+      <div class="error_alert">
+        <p>{{{ email }}}</p>
+        <p>{{{ password }}}</p>
+      </div>
 
       <div class="form-input-wrapper">
-        <input id="userName" name="userName"  {{{ userName }}}  placeholder="Ivan Petrov" >
-        <label for="userName"> User Name</label>
+        <input id="email" name="email"  placeholder="mail@yandex.ru" >
+        <label for="email">Email</label>
       </div>
 
         <div class="form-input-wrapper">
-        <input type="password" id="password" name="password"  placeholder="password" >
+        <input type="password" id="password" name="password" >
         <label for="password"> Password </label>
       </div>
 
