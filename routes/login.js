@@ -3,7 +3,7 @@ var router = express.Router();
 
 const mongoose = require('mongoose');
 const User = require('../models/users.js');
-const userValidate = require('../validators/user.js');
+const validate = require('../validators/user.js');
 
 
 router.get("/", function (req, res) {
@@ -14,12 +14,12 @@ router.get("/", function (req, res) {
 router.post("/", function (req, res) {
   console.log("Запрос авторизации", req.body);
 
-  const params = {
+  const paramsUser = {
     email: req.body.email,
     password: req.body.password
   }
 
-  const validateError = userValidate.formLogin(params);
+  const validateError = validate.formLogin(paramsUser);
    console.log(validateError );
 
    if ( Object.keys( validateError ).length ) {
@@ -30,9 +30,9 @@ router.post("/", function (req, res) {
   console.log("Форма заполнена корректно");
 
   //Добавление пользователя в базуg
-  let newUser = new User( params );
+  let newUser = new User( paramsUser );
 
-  User.findOne({ email: params.email })
+  User.findOne({ email: paramsUser.email })
     .then( (user) => {
       console.log("Результат пойска: ", user);
 
@@ -44,7 +44,7 @@ router.post("/", function (req, res) {
          });
       }
 
-      if ( user.password == params.password ) {
+      if ( user.password == paramsUser.password ) {
         console.log("Успешная авторизация");
 
         req.session.idUser = user._id;

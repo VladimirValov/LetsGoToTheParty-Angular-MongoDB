@@ -30,7 +30,16 @@ function checkFieldEqual(errName, field1, field2, error, messageError ) {
   }
 }
 
+function checkFieldArray(errName, field, error, messageError ) {
+  
+  console.log( field );
+   if ( !field ) {
+    error[ errName ] = messageError;
+  }
+}
+
 module.exports = {
   checkField: checkField,
-  checkFieldEqual: checkFieldEqual
+  checkFieldEqual: checkFieldEqual,
+  checkFieldArray: checkFieldArray
 }

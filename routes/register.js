@@ -3,7 +3,7 @@ var router = express.Router();
 
 const mongoose = require('mongoose');
 const User = require('../models/users.js');
-const userValidate = require('../validators/user.js');
+const validate = require('../validators/user.js');
 
 
 router.get("/", function (req, res) {
@@ -17,7 +17,7 @@ router.get("/", function (req, res) {
 router.post("/", function (req, res) {
   console.log("Запрос авторизации", req.body);
 
-  const params = {
+  const paramsUser = {
     email: req.body.email,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -26,8 +26,8 @@ router.post("/", function (req, res) {
   }
 
 
-  const validateError = userValidate.formRegister(params);
-   console.log(validateError );
+  const validateError = validate.formRegister( paramsUser );
+   console.log( validateError );
 
    if ( Object.keys( validateError ).length ) {
       return res.render('formRegister', validateError );
@@ -37,7 +37,7 @@ router.post("/", function (req, res) {
 
   console.log("Форма заполнена корректно");
 
-  let newUser = new User( params );
+  let newUser = new User( paramsUser );
 
   newUser.save()
     .then( (user) => {

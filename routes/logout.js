@@ -6,6 +6,7 @@ const User = require('../models/users.js');
 
 
 router.get("/", function (req, res) {
+  let idUser = req.session.idUser
 
   if (idUser) {
     delete req.session.idUser

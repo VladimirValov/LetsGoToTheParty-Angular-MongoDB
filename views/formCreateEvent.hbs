@@ -2,32 +2,27 @@
   <div class="form-Intro">
     <h1>Создание события</h1>
   </div>
-    <div class="hello"> {{{  helloUser   }}} </div>
 
-    <fieldset class="form-name">
-      <legend>Create Event</legend>
+  <fieldset class="form-name">
+    <legend>Create Event</legend>
+    <div class="form-input-wrapper">
+      <input id="title" name="title"  placeholder="День рождения" >
+      <label for="title">Event name</label>
+    </div>
+    <div class="error_alert">
+      <p>{{{ title }}}</p>
+    </div>
 
+    <div class="form-input-wrapper">
+      <input id="place" name="place"  placeholder="Геленджик" >
+      <label for="place">Where will it be? </label>
+    </div>
+    <div class="error_alert">
+      <p>{{{ place }}}</p>
+    </div>
 
-
-
-
-
-      <div class="form-input-wrapper">
-        <input id="title" name="title"  placeholder="День рождения" >
-        <label for="title">Event name</label>
-      </div>
-      <div class="error_alert">
-        <p>{{{ title }}}</p>
-      </div>
-
-      <div class="form-input-wrapper">
-        <input id="place" name="place"  placeholder="Геленджик" >
-        <label for="place">Where will it be? </label>
-      </div>
-      <div class="error_alert">
-        <p>{{{ place }}}</p>
-      </div>
-    <select id="userList">
+    <div class="form-input-wrapper">
+      <select id="userList" name="userList" multiple="multiple" size="3">
         {{#>main}}
           {{#each users}}
           <option label={{{  firstName }}} value = {{{ _id }}}></option>
@@ -36,16 +31,11 @@
       </select>
       <label for="userList">Who do you want to invite?</label>
     </div>
-
-
-    </fieldset>
-
-
-
-
-
+    <div class="error_alert">
+      <p>{{{ userList }}}</p>
+    </div>
+  </fieldset>
 
   <button id="submitBtn" class="form-submit-btn" type="submit"  value="Submit "> Create Event </button>
   <a href="/"> Передумал </a>
-
 </form>

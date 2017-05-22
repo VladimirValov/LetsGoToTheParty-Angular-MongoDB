@@ -1,6 +1,7 @@
 
 const User = require('../models/users.js');
 
+
 module.exports = function(req, res, next) {
 
   let idUser = req.session.idUser;

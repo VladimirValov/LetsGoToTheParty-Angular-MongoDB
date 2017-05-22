@@ -16,6 +16,14 @@
   <div class="row">
     <div class="board">
       <a href="/createEvent"> Создать событие </a>
+      <p>Raw Data</p>
+    <p>  {{{events}}}</p>
+
+      {{#>main}}
+        {{#each events}}
+        <p>  {{{_id}}}  {{{title}}} {{{place}}} {{{drinks}}} {{userList}}</p>
+        {{/each}}
+      {{/main}}
 
     </div>
 
