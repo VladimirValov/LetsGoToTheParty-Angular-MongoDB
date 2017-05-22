@@ -1,8 +1,18 @@
 const mongoose = require('mongoose');
 
+const inviteSchema = mongoose.Schema({
+  targetUser_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+  userName: String,
+  isReady: {
+    type:Boolean,
+    default: false
+  },
+  drinks: [ String ]
+});
 
 
 const eventSchema = mongoose.Schema({
+  author_id: String,
   title: {
     type: String,
     required: true
@@ -12,8 +22,9 @@ const eventSchema = mongoose.Schema({
     required: true
   },
   drinks: Array,
-  userList: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }]
+  invites: [ inviteSchema ]
 });
+
 
 const Event = mongoose.model('Event', eventSchema);
 

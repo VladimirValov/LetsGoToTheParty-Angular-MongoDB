@@ -13,19 +13,57 @@
 
   </div>
 
-  <div class="row">
-    <div class="board">
-      <a href="/createEvent"> Создать событие </a>
-      <p>Raw Data</p>
-    <p>  {{{events}}}</p>
+
+
+
+  <div class="row flex-2">
+
+    <div class="col-2 flex">
+      <h2>Меня пригласили</h2>
 
       {{#>main}}
-        {{#each events}}
-        <p>  {{{_id}}}  {{{title}}} {{{place}}} {{{drinks}}} {{userList}}</p>
+        {{#each myInvites}}
+          <div class="invite">
+            <h3 >{{{ title }}}</h3>
+            <p>{{{ place }}}</p>
+            <hr>
+          </div>
+
+
         {{/each}}
+
       {{/main}}
+
+      <p>{{{myInvites}}}</p>
+
 
     </div>
 
+    <div class="col-2">
+      <h2>Я пригласил</h2>
+      <a href="/createEvent"> Создать событие </a>
+
+      {{#>main}}
+        {{#each events}}
+        <h3> {{{title}}} </h3>
+        <p>{{{place}}}</p>
+        <strong>Приглашены</strong>
+
+         {{#>main}}
+           {{#each invites}}
+             <p>{{{ userName }}} --- {{{ isReady }}} --- {{{ drinks }}}</p>
+           {{/each}}
+         {{/main}}
+         <hr>
+
+        {{/each}}
+      {{/main}}
+
+    <p>{{{events}}}</p>
+    </div>
+
+
+
   </div>
+
 </div>

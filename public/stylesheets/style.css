@@ -139,3 +139,12 @@ a {
 .right {
 	text-align: right;
 }
+.flex-2 {
+	display: flex;
+	justify-content: center;
+
+}
+
+.col-2 {
+	flex: 0 0 48%;
+}

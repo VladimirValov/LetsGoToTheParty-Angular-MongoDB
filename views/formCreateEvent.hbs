@@ -25,7 +25,7 @@
       <select id="userList" name="userList" multiple="multiple" size="3">
         {{#>main}}
           {{#each users}}
-          <option label={{{  firstName }}} value = {{{ _id }}}></option>
+          <option label= "{{{ userName }}}"  value = {{{ _id }}}></option>
           {{/each}}
         {{/main}}
       </select>
