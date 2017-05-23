@@ -6,34 +6,50 @@
   <fieldset class="form-name">
     <legend>Create Event</legend>
     <div class="form-input-wrapper">
-      <input id="title" name="title"  placeholder="День рождения" >
+      <input id="title" name="title"  placeholder="Название события" >
       <label for="title">Event name</label>
     </div>
     <div class="error_alert">
-      <p>{{{ title }}}</p>
+      <p>{{{ validateError.title }}}</p>
     </div>
 
     <div class="form-input-wrapper">
-      <input id="place" name="place"  placeholder="Геленджик" >
-      <label for="place">Where will it be? </label>
+      <input id="place" name="place"  placeholder="Место" >
+      <label for="place">Где будет проходить? </label>
     </div>
     <div class="error_alert">
-      <p>{{{ place }}}</p>
+      <p>{{{ validateError.place }}}</p>
     </div>
 
     <div class="form-input-wrapper">
-      <select id="userList" name="userList" multiple="multiple" size="3">
+      <select id="userList" name="userList" multiple="multiple" >
         {{#>main}}
           {{#each users}}
-          <option label= "{{{ userName }}}"  value = {{{ _id }}}></option>
+          <option value={{{ _id }}}> {{{ userName }}} </option>
           {{/each}}
         {{/main}}
       </select>
       <label for="userList">Who do you want to invite?</label>
     </div>
     <div class="error_alert">
-      <p>{{{ userList }}}</p>
+      <p>{{{ validateError.userList }}}</p>
     </div>
+
+    <div class="form-input-wrapper">
+      <select id="drinkList" name="drinkList" multiple="multiple" >
+        {{#>main}}
+          {{#each drinks}}
+          <option value={{{ _id }}}> {{{ name }}} </option>
+          {{/each}}
+        {{/main}}
+      </select>
+      <label for="userList">Какие напитки будут?</label>
+    </div>
+    <div class="error_alert">
+      <p>{{{ validateError.drinkList }}}</p>
+    </div>
+
+
   </fieldset>
 
   <button id="submitBtn" class="form-submit-btn" type="submit"  value="Submit "> Create Event </button>

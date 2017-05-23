@@ -8,6 +8,7 @@ const bodyParser = require('body-parser');
 const logger = require('morgan');
 const favicon = require('serve-favicon');
 
+
 //MONGOOSE
 const mongoose = require('mongoose');
 const urlDB = require('./config.json')
@@ -15,6 +16,8 @@ const urlDB = require('./config.json')
 const PORT = process.env.VCAP_APP_PORT || 7000;
 const app = express();
 
+
+//Route
 const indexRoute = require('./routes/index');
 
 const loginRoute = require('./routes/login.js');
@@ -22,7 +25,11 @@ const registerRoute = require('./routes/register.js');
 const logoutRoute = require('./routes/logout.js');
 
 const createEventRoute = require('./routes/createEvent.js');
-//const answerRoutes = require('./routes/answers.js');
+const inviteRoute = require('./routes/invite.js');
+
+const drinksRoute = require('./routes/drinks.js');
+
+
 
 app.use(session({
   secret: 'no-secret',
@@ -53,7 +60,10 @@ app.use('/register', registerRoute );
 app.use('/logout', logoutRoute );
 
 app.use('/createEvent', createEventRoute );
-//app.use('/answers', answersRoute);
+app.use('/invite/', inviteRoute );
+
+app.use('/drinks/', drinksRoute );
+
 
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;

@@ -1,0 +1,28 @@
+
+<form class="form-wrapper" id="formDrinks" method="post">
+  <div class="form-Intro">
+    <h1>Напитки</h1>
+  </div>
+
+  <fieldset class="form-name">
+    <legend>Добавить Напиток</legend>
+    <div class="form-input-wrapper">
+      <input id="name" name="name"  placeholder="Введите название" >
+      <label for="title">Название напитка</label>
+    </div>
+    <div class="error_alert">
+      <p>{{{ title }}}</p>
+    </div>
+  </fieldset>
+  <button id="submitBtn" class="form-submit-btn" type="submit"  value="Submit "> Add Drink </button>
+</form>
+
+
+
+<h2>Список алкаголя в базе</h2>
+
+{{#>main}}
+  {{#each drinks}}
+    {{_id}} - {{name}}  <br>
+  {{/each}}
+{{/main}}

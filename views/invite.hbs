@@ -1,0 +1,46 @@
+<form class="form-wrapper" id="formParty" method="post">
+  <div class="form-Intro">
+
+    <h1> {{{ title  }}}  </h1>
+
+    <h3>{{{ place }}} <h3>
+  </div>
+
+  <fieldset class="form-questions">
+    <legend>Приглашение: {{{ invite.userName }}}</legend>
+
+    <div class="form-input-wrapper">
+        <select id="isReady" name="isReady" placeholder="Choose please"  >
+          <option value="true">Yes</option>
+          <option value="false"> No</option>
+        </select>
+        <label for="go">Вы придете?</label>
+    </div>
+    <div class="error_alert"> {{{ validateError.isReady }}} </div>
+
+    <div class="form-input-wrapper">
+      <select id="drinks" name="drinks" placeholder="Choose please" multiple="multiple">
+
+        {{#each drinks}}
+           <option value="{{{drink_id}}}"> {{{name}}} </option>
+        {{/each}}
+
+      </select>
+      <label for="drinks">What are you drink?</label>
+    </div>
+    <div class="error_alert"> {{{ validateError.drinks }}} </div>
+
+  </fieldset>
+
+
+  <button id="submitBtn" class="form-submit-btn" type="submit"  value="Submit "> Submit Answer </button>
+  <a href="/"> Не буду отвечать </a>
+
+</form>
+<!--
+answered: {{{ invite.answered  }}}<br>
+isReady: {{{ invite.isReady  }}}<br>
+drinks:  {{{invite.drinks}}}
+
+drinks:  {{{drinks}}}
+-->

@@ -1,13 +1,21 @@
 const mongoose = require('mongoose');
 
+const userDrinkSchema = mongoose.Schema({
+    drink_id: String,
+    name: String
+});
+
 const inviteSchema = mongoose.Schema({
   targetUser_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   userName: String,
   isReady: {
+    type:Boolean
+  },
+  drinks: [userDrinkSchema],
+  answered: {
     type:Boolean,
     default: false
-  },
-  drinks: [ String ]
+  }
 });
 
 
@@ -21,7 +29,7 @@ const eventSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  drinks: Array,
+  drinks: [userDrinkSchema],
   invites: [ inviteSchema ]
 });
 

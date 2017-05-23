@@ -3,64 +3,104 @@ const router = express.Router();
 
 const mongoose = require('mongoose');
 const Event = require('../models/events.js');
+const Drinks = require('../models/drinks.js');
+
+const validate = require('../validators/event.js');
 
 const authRequire = require('../middleware/authRequire.js');
 
-/* GET home page. */
-router.get('/', authRequire, function(req, res, next) {
+//Сохранение приглашения,для отправки при ошибках валидации
+let paramsInvite;
+
+
+//Получаем Id Invite
+router.get('/:id', authRequire, function(req, res, next) {
   let user = req.user;
   console.log(user);
+  console.log(req.params.id);
 
+  const inviteId = req.params.id;
 
-//вывод событий созданных пользователем
-  Event.find({author_id: user._id}).select(
+  Event.findOne({"invites._id": inviteId},
     {
       _id: 0,
       title: 1,
       place: 1,
-      invites: 1
+      drinks: 1,
+      "invites.$" : 1
     })
-    .then ( (events) => {
-      console.log(events);
+    .then ( (result) => {
+      console.log(result);
 
-      //вывод событий созданных пользователем
-      Event.find({"invites.targetUser_id": user._id},
+      paramsInvite = {
+        title: result.title,
+        place: result.place,
+        invite: result.invites[0],
+        drinks: result.drinks,
+        }
+
+     return  res.render('invite', paramsInvite);
+     })
+     .catch( err => {
+        console.log(err);
+      });
+});
+
+
+
+router.post('/:id', authRequire, function(req, res) {
+  const inviteId = req.params.id;
+
+  console.log(req.body);
+
+  const userAnswer = {
+    isReady: req.body.isReady,
+    drinks: req.body.drinks
+  }
+
+  const validateError = validate.formInvite( userAnswer );
+   console.log( validateError );
+
+   if ( Object.keys( validateError ).length ) {
+
+     paramsInvite.validateError = validateError;
+
+      return res.render('invite', paramsInvite );
+    }
+
+
+  console.log("Форма заполнена корректно");
+
+  Drinks.find({ _id: {$in: userAnswer.drinks }}, { _id: 1, name: 1} )
+    .then ((drinkList) => {
+      console.log("Напитки найдены");
+      console.log(drinkList);
+
+      const drinks = drinkList.map( (el) => {
+        console.log(el);
+        return {
+          drink_id : el._id,
+          name: el.name
+         }
+      });
+
+      console.log(drinks);
+      //Обновляем ответ пользователя
+      Event.update(
+        {"invites._id": inviteId},
         {
-          _id: 0,
-          title: 1,
-          place: 1,
-          "invites.$" : 1
-        })
-        .then ( (invites) => {
-          console.log("invites", invites);
+          $set: {
+          "invites.$.answered": true,
+          "invites.$.isReady": userAnswer.isReady ,
+          "invites.$.drinks": drinks
+        }})
+        .then( (result) => {
+          console.log("result.invites")
+          console.log(result)
 
-         res.render('index', {
-          userName: user.firstName,
-          events: events,
-          myInvites: invites
-          });
-      })
-    })
-    .catch( err => {
-      console.log(err);
+            res.redirect("/");
+        });
     });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 });
 
 module.exports = router;

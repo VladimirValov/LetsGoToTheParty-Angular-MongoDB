@@ -34,7 +34,6 @@ router.post("/", function (req, res) {
     }
 
 
-
   console.log("Форма заполнена корректно");
 
   let newUser = new User( paramsUser );

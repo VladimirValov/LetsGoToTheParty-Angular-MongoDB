@@ -11,6 +11,7 @@ router.get("/", function (req, res) {
    res.render('formLogin', {});
 });
 
+
 router.post("/", function (req, res) {
   console.log("Запрос авторизации", req.body);
 
@@ -29,7 +30,7 @@ router.post("/", function (req, res) {
 
   console.log("Форма заполнена корректно");
 
-  //Добавление пользователя в базуg
+  //Добавление пользователя в базу
   let newUser = new User( paramsUser );
 
   User.findOne({ email: paramsUser.email })
@@ -46,6 +47,8 @@ router.post("/", function (req, res) {
 
       if ( user.password == paramsUser.password ) {
         console.log("Успешная авторизация");
+
+        //Записываем в сессии ID пользователя
 
         req.session.idUser = user._id;
 

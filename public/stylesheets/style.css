@@ -147,4 +147,17 @@ a {
 
 .col-2 {
 	flex: 0 0 48%;
+	padding:10px;
+}
+
+.invite {
+	border: 1px solid #CCC;
+	border-radius: 3px;
+	padding: 5px;
+
+
+
+}
+.invite + .invite {
+	margin-top: 10px;
 }

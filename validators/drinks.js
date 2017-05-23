@@ -22,7 +22,6 @@ function formCreateEvent ( event ) {
   checkField( "place", event.place, rules.alphaNumSpace, errorValidate );
 
   checkFieldArray( "userList", event.userList, errorValidate, "Выберите список участников" );
-  checkFieldArray( "drinkList", event.drinkList, errorValidate, "Выберите список напитков" );
 
   console.log("Валидация завершена");
   return errorValidate;

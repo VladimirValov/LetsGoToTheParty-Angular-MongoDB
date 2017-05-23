@@ -10,14 +10,9 @@
       Welcome!  {{{ userName }}}
       <a href="/logout">Log out</a>
     </div>
-
   </div>
 
-
-
-
   <div class="row flex-2">
-
     <div class="col-2 flex">
       <h2>Меня пригласили</h2>
 
@@ -26,18 +21,14 @@
           <div class="invite">
             <h3 >{{{ title }}}</h3>
             <p>{{{ place }}}</p>
-            <hr>
+
+            {{#each invites}}
+              <a href=/invite/{{{ _id }}}> Подробнее </a>
+            {{/each}}
           </div>
-
-
         {{/each}}
-
       {{/main}}
-
-      <p>{{{myInvites}}}</p>
-
-
-    </div>
+     </div>
 
     <div class="col-2">
       <h2>Я пригласил</h2>
@@ -47,23 +38,29 @@
         {{#each events}}
         <h3> {{{title}}} </h3>
         <p>{{{place}}}</p>
-        <strong>Приглашены</strong>
 
-         {{#>main}}
+        <p>Напитки:
+        {{#each drinks}}
+          {{{ name }}}
+        {{/each}}
+        </p>
+
            {{#each invites}}
-             <p>{{{ userName }}} --- {{{ isReady }}} --- {{{ drinks }}}</p>
+           <div class="invite">
+             <p><strong>{{{ userName }}}</strong>  (Отвечал: {{{ answered }}})</p>
+             <p> Идет: {{{ isReady }}} </p>
+             <p>
+               {{#each drinks}}
+                 {{{ name }}}
+               {{/each}}
+             </p>
+             </div>
            {{/each}}
-         {{/main}}
-         <hr>
-
         {{/each}}
       {{/main}}
 
-    <p>{{{events}}}</p>
+  <!--  <p>{{{events}}}</p>-->
     </div>
-
-
-
   </div>
 
 </div>
