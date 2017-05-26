@@ -1,0 +1,7 @@
+
+<div ng-repeat="invite in $ctrl.myInviteList">
+  <p>Название: {{invite.title}}</p>
+  <p>Место: {{invite.place}}</p>
+  <a href="/invite/{{invite.invites[0]._id}}"> Подробнее </a>
+  <hr>
+</div>

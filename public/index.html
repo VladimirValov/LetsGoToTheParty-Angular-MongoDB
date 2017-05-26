@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ru" ng-app="partyApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel='stylesheet' href='css/bootstrap.css' />
+
+    <script src="./lib/angular.min.js" charset="utf-8"></script>
+    <script src="lib/ui-bootstrap-tpls-2.5.0.min.js" charset="utf-8"></script>
+
+    <script src="./app.module.js" charset="utf-8"></script>
+
+    <script src="./user-nav/user-nav.module.js" charset="utf-8"></script>
+    <script src="./user-nav/user-nav.component.js" charset="utf-8"></script>
+
+    <script src="./invite-list/invite-list.module.js" charset="utf-8"></script>
+    <script src="./invite-list/invite-list.component.js" charset="utf-8"></script>
+
+    <title> Angular</title>
+
+
+  </head>
+  <body>
+
+    <div class="container-fluid">
+      <user-nav></user-nav>
+    </div>
+
+
+    <div class="container-fluid">
+
+      <div class="row">
+
+        <div class="col-sm-6">
+          <h2>Меня пригласили</h2>
+          <invite-list></invite-list>
+        </div>
+
+        <div class="col-sm-6">
+          <h2>Я пригласил</h2>
+          <invite-list></invite-list>
+        </div>
+      </div>
+
+    </div>
+
+  </body>
+</html>

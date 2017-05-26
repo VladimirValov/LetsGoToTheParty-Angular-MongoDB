@@ -4,23 +4,21 @@ const User = require('../models/users.js');
 
 module.exports = function(req, res, next) {
 
-  let idUser = req.session.idUser;
-  console.log("req.session.idUser = " + idUser);
-
-  if ( idUser ){
-    User.findOne({ _id : idUser })
-      .then((user) => {
-        console.log("Поиск завершен", user);
-        req.user = user;
-        next();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }
-  else {
-    res.redirect("/login");
-  }
+	let idUser = req.session.idUser;
+	console.log("req.session.idUser = " + idUser);
+/*
+	if (!idUser) {
+	res.redirect("/login");
+	return;
+	}
+*/
+	User.findOne({ /* _id : idUser */ }).then((user) => {
+		console.log("Поиск завершен", user);
+		req.user = user;
+		next();
+	}).catch((err) => {
+		console.log(err);
+	});
 
 }
 /*
