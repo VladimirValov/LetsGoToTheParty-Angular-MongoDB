@@ -30,6 +30,9 @@ const inviteRoute = require('./routes/invite.js');
 const drinksRoute = require('./routes/drinks.js');
 
 
+const usersRoute = require('./routes/users.js');
+
+
 
 app.use(session({
   secret: 'no-secret',
@@ -55,19 +58,22 @@ app.use(function(err, req, res, next) {
 });
 
 // app.use('/', indexRoute);
-app.use('/login', loginRoute );
-app.use('/register', registerRoute );
-app.use('/logout', logoutRoute );
+//app.use('/login', loginRoute);
+//app.use('/register', registerRoute);
+//app.use('/logout', logoutRoute);
 
-app.use('/createEvent', createEventRoute );
-app.use('/invite/', inviteRoute );
+//app.use('/createEvent', createEventRoute);
+//app.use('/invite/', inviteRoute);
 
-app.use('/drinks/', drinksRoute );
+//app.use('/drinks/', drinksRoute);
+
+app.use('/', usersRoute);
+
 
 
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;
-  res.render('error');
+  res.send('error');
 });
 
 

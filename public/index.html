@@ -7,6 +7,9 @@
     <link rel='stylesheet' href='css/bootstrap.css' />
 
     <script src="./lib/angular.min.js" charset="utf-8"></script>
+    <script src="./lib/angular-animate.js" charset="utf-8"></script>
+    <script src="./lib/angular-sanitize.js" charset="utf-8"></script>
+
     <script src="lib/ui-bootstrap-tpls-2.5.0.min.js" charset="utf-8"></script>
 
     <script src="./app.module.js" charset="utf-8"></script>
@@ -31,15 +34,23 @@
     <div class="container-fluid">
 
       <div class="row">
+        <div class="col-xs-12 col-sm-12">
+          <uib-tabset active="active">
 
-        <div class="col-sm-6">
-          <h2>Меня пригласили</h2>
-          <invite-list></invite-list>
+            <uib-tab index="0" heading="Меня пригласили">
+              <invite-list></invite-list>
+            </uib-tab>
+
+            <uib-tab index="1" heading="Я пригласил">
+              dfgdfgdfgdfg
+            </uib-tab>
+          </uib-tabset>
+
         </div>
 
-        <div class="col-sm-6">
-          <h2>Я пригласил</h2>
-          <invite-list></invite-list>
+
+
+
         </div>
       </div>
 
