@@ -3,5 +3,6 @@
 angular.module('partyApp',[
   'ui.bootstrap',
   'userNav',
-  'inviteList'
+  'inviteList',
+  'inviteDetail'
 ]);

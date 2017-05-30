@@ -1,7 +1,2 @@
-
-<div ng-repeat="invite in $ctrl.invites">
-  <p><strong>Название: {{invite.title}}</strong></p>
-  <p>Место: {{invite.place}}</p>
-  <a href="/invite/{{invite.invites[0]._id}}"> Подробнее </a>
-  <hr>
-</div>
+<invite-detail ng-repeat="invite in $ctrl.invites" invite="invite">
+</invite-detail>
