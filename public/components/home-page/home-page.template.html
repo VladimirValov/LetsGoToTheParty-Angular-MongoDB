@@ -25,18 +25,21 @@
 
 
     <uib-tab index="3" heading="Мои события">
-      <event-list></event-list>
+      <event-list events="$ctrl.events"></event-list>
     </uib-tab>
   </uib-tabset>
 
   </div>
 </div>
 
+<invite
 
 
 
 
 <hr>
 <p>home-page</p>
-{{ $ctrl.user }}
-{{ $ctrl.allInvites }}
+<p>{{ $ctrl.user }}</p>
+<p>$ctrl.allInvites.length: {{ $ctrl.allInvites.length }}</p>
+
+<p>$ctrl.events.length: {{ $ctrl.events.length }}</p>

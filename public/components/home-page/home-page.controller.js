@@ -5,6 +5,7 @@ angular.module('homePage').controller('HomePageController', function (Auth, $sta
   const self = this;
 
 
+
   self.user = Auth.getUser()
   console.log('home-page');
   console.log(this.user);
@@ -20,4 +21,11 @@ angular.module('homePage').controller('HomePageController', function (Auth, $sta
     console.log(response.data);
     self.allInvites = response.data;
   });
+
+
+  $http.get('/' + self.user.id + "/events").then(function (response) {
+    console.log(response);
+    self.events = response.data
+  });
+
 });

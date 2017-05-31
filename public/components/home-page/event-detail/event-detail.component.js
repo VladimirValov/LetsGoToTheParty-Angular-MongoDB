@@ -3,7 +3,7 @@ function EventDetailController() {
 }
 
 angular.module('eventDetail').component('eventDetail', {
-  templateUrl: "/event-detail/event-detail.template.html",
+  templateUrl: "components/home-page/event-detail/event-detail.template.html",
   controller: EventDetailController,
   bindings: {
     event: '='

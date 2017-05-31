@@ -1,5 +1,7 @@
 angular.module('homePage',[
   'userNav',
   'inviteList',
-  'inviteDetail'
+  'inviteDetail',
+  'eventList',
+  'eventDetail'
 ]);

@@ -1,4 +1,10 @@
-<p><strong>Название: {{$ctrl.invite.title}}</strong></p>
+<h3><strong>{{$ctrl.invite.title}}</strong></h3>
 <p>Место: {{ $ctrl.invite.place }}</p>
 <a href="/invite/{{ $ctrl.invite.invites[0]._id }}"> Подробнее </a>
+<br>
+
+<button type="button" class="btn btn-default" ng-click="$ctrl.openComponentModal()">Open a component modal!</button>
+<div ng-show="$ctrl.selected">Selection from a modal: {{ $ctrl.selected }}</div>
+
+
 <hr>

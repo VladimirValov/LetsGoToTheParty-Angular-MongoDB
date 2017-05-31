@@ -1,0 +1,66 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">Событие: {{ $ctrl.items.title }}</h3>
+</div>
+
+<div class="modal-body" id="modal-body">
+Место проведения: {{ $ctrl.items.place }}
+
+
+<form name="answer">
+<!--
+    <div class="checkbox">
+    <label>
+      <input type="checkbox" ng-model="answer.isReady"> Я пойду
+    </label>
+   </div>
+-->
+
+
+   <h4>Пойдешь на это событие?</h4>
+   <div class="btn-group">
+       <label class="btn btn-success" ng-model="answer.isReady" uib-btn-radio="true">Конечно иду!</label>
+       <label class="btn btn-primary" ng-model="answer.isReady" uib-btn-radio="false"> Я не пойду</label>
+   </div>
+
+   <div ng-show="answer.isReady">
+     <h4>Какие напитки предпочитаешь?</h4>
+     <div class="drinks">
+       <select class="form-control" ng-model="drinks" ng-options="opt for opt in [1,2 ,3]"></select>
+     </div>
+   </div>
+
+
+
+</form>
+<br>
+{{ $ctrl.items }}
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+</div>
+
+
+
+<!--
+
+
+
+
+           <ul>
+               <li ng-repeat="item in $ctrl.items">
+                   <a href="#" ng-click="$event.preventDefault(); $ctrl.selected.item = item">{{ item }}</a>
+               </li>
+           </ul>
+           Selected: <b>{{ $ctrl.selected.item }}</b>
+
+   </script>
+   <script type="text/ng-template" id="stackedModal.html">
+       <div class="modal-header">
+           <h3 class="modal-title" id="modal-title-{{name}}">The {{name}} modal!</h3>
+       </div>
+       <div class="modal-body" id="modal-body-{{name}}">
+           Having multiple modals open at once is probably bad UX but it's technically possible.
+       </div>
+-->
