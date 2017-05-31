@@ -2,7 +2,8 @@
 
 angular.module('partyApp',[
   'ui.bootstrap',
-  'userNav',
-  'inviteList',
-  'inviteDetail'
+  'ui.router',
+  'core',
+  'components',
+  'userNav'
 ]);

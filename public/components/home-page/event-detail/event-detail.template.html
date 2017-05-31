@@ -1,0 +1,15 @@
+
+<p><strong>{{ $ctrl.event.title }}</strong></p>
+<p>{{ $ctrl.event.place }}</p>
+
+<div class="drink" ng-repeat="drink in $ctrl.event.drinks">
+  {{ drink.name }}
+</div>
+<br>
+
+<div class="invites" ng-repeat="invite in $ctrl.event.invites">
+  <p>{{ invite.userName }}</p>
+  <p>{{ invite.answered }}</p>
+  <p>{{ invite.drinks }}</p>
+</div>
+<hr>
