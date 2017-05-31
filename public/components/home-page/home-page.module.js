@@ -1,1 +1,5 @@
-angular.module('homePage',['userNav']);
+angular.module('homePage',[
+  'userNav',
+  'inviteList',
+  'inviteDetail'
+]);

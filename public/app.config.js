@@ -16,7 +16,7 @@ angular.module('partyApp').config(function($stateProvider) {
   const logoutState = {
     name: 'logout',
     url: '/logout',
-    template: '<h2>Вы покинули сайт</h2>',
+    template: '<h2>Вы покинули сайт</h2> <a ui-sref="login">Войти</a>',
     onEnter: logoutFunc
   }
 

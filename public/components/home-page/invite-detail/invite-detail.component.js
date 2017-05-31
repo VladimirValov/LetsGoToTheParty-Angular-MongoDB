@@ -4,7 +4,7 @@ function inviteDetailController() {
 }
 
 angular.module('inviteDetail').component('inviteDetail', {
-  templateUrl: 'invite-detail/invite-detail.template.html',
+  templateUrl: 'components/home-page/invite-detail/invite-detail.template.html',
   controller: inviteDetailController,
   bindings: {
     invite: '='

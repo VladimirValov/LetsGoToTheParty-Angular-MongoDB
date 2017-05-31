@@ -51,8 +51,8 @@ router.post("/", function (req, res) {
         req.session.idUser = user._id;
 
         res.send({
-          userName: user.firstName + " " + user.lastName,
-          user_id: user._id
+          name: user.firstName + " " + user.lastName,
+          id: user._id
         });
       }
 

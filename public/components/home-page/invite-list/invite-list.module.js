@@ -1,1 +1,1 @@
-angular.module('inviteList', ['core.auth']);
+angular.module('inviteList', []);

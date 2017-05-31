@@ -12,8 +12,8 @@ function FormAuthController($http, Auth,  $state) {
       console.log(response.data);
 
 
-      if(response.data.user_id) {
-        console.log(response.data.user_id);
+      if(response.data.id) {
+        console.log(response.data.id);
 
         Auth.setUser(response.data);
         $state.go('home');
