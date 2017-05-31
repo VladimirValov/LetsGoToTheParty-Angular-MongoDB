@@ -10,11 +10,21 @@
   <div class="col-xs-12 col-sm-12">
 
   <uib-tabset>
-    <uib-tab index="0" heading="Меня пригласили">
-      <invite-list iduser="$ctrl.user.id" ></invite-list>
+    <uib-tab index="0" heading="Новые приглашения">
+      <invite-list invites="$ctrl.allInvites" answered="null" ></invite-list>
     </uib-tab>
 
-    <uib-tab index="1" heading="Я пригласил">
+    <uib-tab index="1" heading="Принятые">
+      <invite-list invites="$ctrl.allInvites" answered="true" ></invite-list>
+    </uib-tab>
+
+
+    <uib-tab index="2" heading="Отклоненные">
+      <invite-list invites="$ctrl.allInvites" answered="false"></invite-list>
+    </uib-tab>
+
+
+    <uib-tab index="3" heading="Мои события">
       <event-list></event-list>
     </uib-tab>
   </uib-tabset>
@@ -29,3 +39,4 @@
 <hr>
 <p>home-page</p>
 {{ $ctrl.user }}
+{{ $ctrl.allInvites }}

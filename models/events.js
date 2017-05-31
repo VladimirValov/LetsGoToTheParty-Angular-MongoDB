@@ -13,8 +13,7 @@ const inviteSchema = mongoose.Schema({
   },
   drinks: [userDrinkSchema],
   answered: {
-    type:Boolean,
-    default: false
+    type:Boolean
   }
 });
 
