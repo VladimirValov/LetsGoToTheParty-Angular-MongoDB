@@ -3,7 +3,7 @@
   <user-nav name="$ctrl.user.name"></user-nav>
 </div>
 
-<h1>Home Page</h1>
+<h1>События и приглашения</h1>
 
 <br>
 <div class="row">
@@ -11,21 +11,21 @@
 
   <uib-tabset>
     <uib-tab index="0" heading="Новые приглашения">
-      <invite-list invites="$ctrl.allInvites" answered="null" ></invite-list>
+      <invite-list invites="$ctrl.allInvites" isready="null" ></invite-list>
     </uib-tab>
 
     <uib-tab index="1" heading="Принятые">
-      <invite-list invites="$ctrl.allInvites" answered="true" ></invite-list>
+      <invite-list invites="$ctrl.allInvites" isready="true" ></invite-list>
     </uib-tab>
 
 
     <uib-tab index="2" heading="Отклоненные">
-      <invite-list invites="$ctrl.allInvites" answered="false"></invite-list>
+      <invite-list invites="$ctrl.allInvites" isready="false"></invite-list>
     </uib-tab>
 
 
     <uib-tab index="3" heading="Мои события">
-      <event-list events="$ctrl.events"></event-list>
+      <event-list events="$ctrl.events" author="$ctrl.user.id" ></event-list>
     </uib-tab>
   </uib-tabset>
 
@@ -38,6 +38,8 @@
 
 
 <hr>
+
+<!--
 <p>home-page</p>
 <p>{{ $ctrl.user }}</p>
 <p>$ctrl.allInvites.length: {{ $ctrl.allInvites.length }}</p>
@@ -45,3 +47,4 @@
 <p>$ctrl.events.length: {{ $ctrl.events.length }}</p>
 
 <p>{{ $ctrl.allInvites }}</p>
+-->

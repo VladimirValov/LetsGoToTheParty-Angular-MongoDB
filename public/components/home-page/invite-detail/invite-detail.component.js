@@ -1,16 +1,15 @@
 angular.module('inviteDetail').component('inviteDetail', {
   templateUrl: 'components/home-page/invite-detail/invite-detail.template.html',
-  controller: inviteDetailController,
+  controller: InviteDetailController,
   bindings: {
-    invite: '=',
+    invite: '<',
     labelbutton: '<'
   }
 });
 
 
-
-function inviteDetailController($uibModal, $document) {
-
+function InviteDetailController($uibModal, $document, $state) {
+  var self = this;
 
   this.openComponentModal = function () {
 
@@ -24,18 +23,11 @@ function inviteDetailController($uibModal, $document) {
       }
     });
 
-    var self = this;
-
-    modalInstance.result.then(function (selectedItem) {
-      self.selected = selectedItem;
+    modalInstance.result.then(function () {
+      $state.reload()
     });
   };
-
 }
-
-
-
-
 
 angular.module('inviteDetail').component('modalComponent', {
   templateUrl: 'components/home-page/invite-detail/myModalContent.html',
@@ -44,10 +36,10 @@ angular.module('inviteDetail').component('modalComponent', {
     close: '&',
     dismiss: '&'
   },
-  controller: modalComponentController
+  controller: ModalComponentController
 });
 
-function modalComponentController ($http) {
+function ModalComponentController ($http) {
   var self = this;
 
   self.$onInit = function () {
@@ -58,14 +50,21 @@ function modalComponentController ($http) {
   self.ok = function () {
     let inviteId = self.invite.invites[0]._id;
 
-    console.log(self.answer.drinks);
-    delete self.answer.drinks._id;
-    console.log(self.answer.drinks);
+    if(!self.answer.isReady){
+      self.answer.drinks = [];
+    }
+
+    if(self.answer.isReady){
+      console.log(self.answer.drinks);
+      delete self.answer.drinks._id;
+      console.log(self.answer.drinks);
+    }
+
+
 
     $http.post('/invite/' + inviteId, self.answer).then(function (response) {
       console.log(response.data);
     });
-
 
     self.close({$value: self.answer});
   };

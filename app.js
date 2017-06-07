@@ -19,16 +19,16 @@ const app = express();
 
 //Route
 //const indexRoute = require('./routes/index');
-
+const usersRoute = require('./routes/users.js');
 const loginRoute = require('./routes/login.js');
 //const registerRoute = require('./routes/register.js');
 //const logoutRoute = require('./routes/logout.js');
 
-//const createEventRoute = require('./routes/createEvent.js');
+const eventsRoute = require('./routes/events.js');
 const inviteRoute = require('./routes/invite.js');
 
-//const drinksRoute = require('./routes/drinks.js');
-const usersRoute = require('./routes/users.js');
+const drinksRoute = require('./routes/drinks.js');
+
 
 
 
@@ -55,17 +55,16 @@ app.use(function(err, req, res, next) {
   next();
 });
 
+app.use('/users', usersRoute);
 // app.use('/', indexRoute);
 app.use('/login', loginRoute);
 //app.use('/register', registerRoute);
 //app.use('/logout', logoutRoute);
 
-//app.use('/createEvent', createEventRoute);
+app.use('/events', eventsRoute);
 app.use('/invite/', inviteRoute);
+app.use('/drinks/', drinksRoute);
 
-//app.use('/drinks/', drinksRoute);
-
-app.use('/', usersRoute);
 
 
 

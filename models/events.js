@@ -9,12 +9,10 @@ const inviteSchema = mongoose.Schema({
   targetUser_id: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
   userName: String,
   isReady: {
-    type:Boolean
+    type:Boolean,
+    default: null
   },
   drinks: [userDrinkSchema],
-  answered: {
-    type:Boolean
-  }
 });
 
 

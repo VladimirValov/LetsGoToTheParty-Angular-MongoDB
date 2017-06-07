@@ -4,8 +4,6 @@ angular.module('homePage').controller('HomePageController', function (Auth, $sta
 
   const self = this;
 
-
-
   self.user = Auth.getUser()
   console.log('home-page');
   console.log(this.user);
@@ -17,13 +15,13 @@ angular.module('homePage').controller('HomePageController', function (Auth, $sta
 
   // Запрос всех приглашений пользователя
 
-  $http.get('/' + self.user.id + "/invites").then(function (response) {
+  $http.get('/users/' + self.user.id + "/invites").then(function (response) {
     console.log(response.data);
     self.allInvites = response.data;
   });
 
 
-  $http.get('/' + self.user.id + "/events").then(function (response) {
+  $http.get('/users/' + self.user.id + "/events").then(function (response) {
     console.log(response);
     self.events = response.data
   });

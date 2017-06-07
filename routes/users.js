@@ -3,6 +3,7 @@ const router = express.Router();
 
 const mongoose = require('mongoose');
 const Event = require('../models/events.js');
+const Users = require('../models/users.js');
 
 
 
@@ -24,7 +25,7 @@ router.get('/:user_id/invites', function (req, res, next) {
       "invites.$" : 1
     })
     .then(function(invites) {
-      
+
       console.log("invites", invites);
 
       res.send(invites);
@@ -57,6 +58,17 @@ router.get('/:user_id/events', function (req, res, next) {
       res.send(events);
     })
     .catch(err => { console.log(err); });
+});
+
+router.get('/', function(req, res, next) {
+  console.log("Запрос всех пользователей");
+
+  Users.find({}).select({ _id: 1, firstName: 1, lastName: 1 })
+    .then((users) => {
+      console.log("Поиск завершен", users);
+      res.send(users);
+      })
+    .catch((err) => { console.log(err); });
 });
 
 module.exports = router;

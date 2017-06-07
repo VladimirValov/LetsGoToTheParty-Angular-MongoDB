@@ -20,6 +20,6 @@ angular.module('inviteList').component('inviteList', {
   controller: [ InviteListController ],
   bindings: {
     invites: '<',
-    answered: '<'
+    isready: '<'
   }
 });

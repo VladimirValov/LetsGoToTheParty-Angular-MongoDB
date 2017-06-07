@@ -11,7 +11,7 @@
 <div class="invites" ng-repeat="invite in $ctrl.event.invites">
   <hr>
   <p>{{ invite.userName }}</p>
-  <p>{{ invite.answered }}</p>
+  <p>{{ invite.isReady }}</p>
   <p ng-repeat="drink in invite.drinks"> {{ drink.name }}</p>
   <hr>
 </div>
