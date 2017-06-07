@@ -2,14 +2,15 @@ angular.module('inviteDetail').component('inviteDetail', {
   templateUrl: 'components/home-page/invite-detail/invite-detail.template.html',
   controller: inviteDetailController,
   bindings: {
-    invite: '='
+    invite: '=',
+    labelbutton: '<'
   }
 });
 
 
 
 function inviteDetailController($uibModal, $document) {
-  var self = this;
+
 
   this.openComponentModal = function () {
 
@@ -22,6 +23,8 @@ function inviteDetailController($uibModal, $document) {
         }
       }
     });
+
+    var self = this;
 
     modalInstance.result.then(function (selectedItem) {
       self.selected = selectedItem;
@@ -50,7 +53,6 @@ function modalComponentController ($http) {
   self.$onInit = function () {
     self.invite = self.resolve.invite;
     self.answer = {};
-
   };
 
   self.ok = function () {

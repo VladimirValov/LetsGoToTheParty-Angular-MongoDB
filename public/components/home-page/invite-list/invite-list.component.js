@@ -4,6 +4,12 @@ function InviteListController() {
   this.$onInit = function() {
     console.log('this.invites', this.invites);
     console.log('this.answered', this.answered);
+
+    this.labelbutton = "Изменить решение"
+
+    if( this.answered == null) {
+      this.labelbutton = "Ответить на приглашение";
+    }
   }
 
 }
