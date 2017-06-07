@@ -1,10 +1,15 @@
+angular.module('inviteDetail').component('inviteDetail', {
+  templateUrl: 'components/home-page/invite-detail/invite-detail.template.html',
+  controller: inviteDetailController,
+  bindings: {
+    invite: '='
+  }
+});
+
+
 
 function inviteDetailController($uibModal, $document) {
   var self = this;
-
-  self.items = ['item1', 'item2', 'item3'];
-
-  self
 
   this.openComponentModal = function () {
 
@@ -12,7 +17,7 @@ function inviteDetailController($uibModal, $document) {
       animation: true,
       component: 'modalComponent',
       resolve: {
-        items: function () {
+        invite: function () {
           return self.invite;
         }
       }
@@ -25,40 +30,45 @@ function inviteDetailController($uibModal, $document) {
 
 }
 
-angular.module('inviteDetail').component('inviteDetail', {
-  templateUrl: 'components/home-page/invite-detail/invite-detail.template.html',
-  controller: inviteDetailController,
-  bindings: {
-    invite: '='
-  }
-});
+
 
 
 
 angular.module('inviteDetail').component('modalComponent', {
   templateUrl: 'components/home-page/invite-detail/myModalContent.html',
   bindings: {
-    invite: '=',
     resolve: '<',
     close: '&',
     dismiss: '&'
   },
-  controller: function () {
-    var self = this;
-
-    self.$onInit = function () {
-      self.items = self.resolve.items;
-      self.selected = {
-        item: self.items[0]
-      };
-    };
-
-    self.ok = function () {
-      self.close({$value: self.selected.item});
-    };
-
-    self.cancel = function () {
-      self.dismiss({$value: 'cancel'});
-    };
-  }
+  controller: modalComponentController
 });
+
+function modalComponentController ($http) {
+  var self = this;
+
+  self.$onInit = function () {
+    self.invite = self.resolve.invite;
+    self.answer = {};
+
+  };
+
+  self.ok = function () {
+    let inviteId = self.invite.invites[0]._id;
+
+    console.log(self.answer.drinks);
+    delete self.answer.drinks._id;
+    console.log(self.answer.drinks);
+
+    $http.post('/invite/' + inviteId, self.answer).then(function (response) {
+      console.log(response.data);
+    });
+
+
+    self.close({$value: self.answer});
+  };
+
+  self.cancel = function () {
+    self.dismiss({$value: 'cancel'});
+  };
+}

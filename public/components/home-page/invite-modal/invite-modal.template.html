@@ -1,28 +1,36 @@
 <div class="modal-header">
-  <h3 class="modal-title" id="modal-title">Приглашение!</h3>
+  <h3 class="modal-title" id="modal-title">Событие: {{ $ctrl.items.title }}</h3>
 </div>
 
 <div class="modal-body" id="modal-body">
-{{$ctrl.invite}}
+Место проведения: {{ $ctrl.items.place }}
 
-  <form name="answer">
 
-      <div class="checkbox">
-      <label>
-        <input type="checkbox" ng-model="parentRelative"> Я пойду
-      </label>
+<form name="answer">
+
+   <h4>Пойдешь на это событие?</h4>
+   <div class="btn-group">
+       <label class="btn btn-success" ng-model="answer.isReady" uib-btn-radio="true">Конечно иду!</label>
+       <label class="btn btn-primary" ng-model="answer.isReady" uib-btn-radio="false"> Я не пойду</label>
+   </div>
+
+   <div ng-show="answer.isReady">
+     <h4>Какие напитки предпочитаешь?</h4>
+     <div class="drinks">
+       <select class="form-control" ng-model="drinks" ng-options="$ctrl.items.
+
+       drinkor opt in [1,2 ,3]"></select>
      </div>
+   </div>
 
-    <div class="drinks">
-      Что вы будете Пить?
-      <select class="form-control" ng-model="drinks" ng-options="opt for opt in [1,2 ,3]"></select>
-    </div>
 
-  </form>
 
+</form>
+<br>
+{{ $ctrl.items }}
 
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
-  <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
 </div>

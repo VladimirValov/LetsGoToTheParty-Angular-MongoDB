@@ -18,18 +18,16 @@ const app = express();
 
 
 //Route
-const indexRoute = require('./routes/index');
+//const indexRoute = require('./routes/index');
 
 const loginRoute = require('./routes/login.js');
-const registerRoute = require('./routes/register.js');
-const logoutRoute = require('./routes/logout.js');
+//const registerRoute = require('./routes/register.js');
+//const logoutRoute = require('./routes/logout.js');
 
-const createEventRoute = require('./routes/createEvent.js');
+//const createEventRoute = require('./routes/createEvent.js');
 const inviteRoute = require('./routes/invite.js');
 
-const drinksRoute = require('./routes/drinks.js');
-
-
+//const drinksRoute = require('./routes/drinks.js');
 const usersRoute = require('./routes/users.js');
 
 
@@ -63,7 +61,7 @@ app.use('/login', loginRoute);
 //app.use('/logout', logoutRoute);
 
 //app.use('/createEvent', createEventRoute);
-//app.use('/invite/', inviteRoute);
+app.use('/invite/', inviteRoute);
 
 //app.use('/drinks/', drinksRoute);
 

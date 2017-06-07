@@ -20,9 +20,11 @@ router.get('/:user_id/invites', function (req, res, next) {
       _id: 0,
       title: 1,
       place: 1,
+      drinks: 1,
       "invites.$" : 1
     })
     .then(function(invites) {
+      
       console.log("invites", invites);
 
       res.send(invites);

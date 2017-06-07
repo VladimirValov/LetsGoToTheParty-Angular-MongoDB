@@ -1,39 +1,35 @@
 <div class="modal-header">
-  <h3 class="modal-title" id="modal-title">Событие: {{ $ctrl.items.title }}</h3>
+  <h3 class="modal-title" id="modal-title">Событие: {{ $ctrl.invite.title }}</h3>
 </div>
 
 <div class="modal-body" id="modal-body">
-Место проведения: {{ $ctrl.items.place }}
+Место проведения: {{ $ctrl.invite.place }}
 
-
-<form name="answer">
-<!--
-    <div class="checkbox">
-    <label>
-      <input type="checkbox" ng-model="answer.isReady"> Я пойду
-    </label>
-   </div>
--->
-
-
+<form>
    <h4>Пойдешь на это событие?</h4>
    <div class="btn-group">
-       <label class="btn btn-success" ng-model="answer.isReady" uib-btn-radio="true">Конечно иду!</label>
-       <label class="btn btn-primary" ng-model="answer.isReady" uib-btn-radio="false"> Я не пойду</label>
+       <label class="btn btn-success" ng-model="$ctrl.answer.isReady" uib-btn-radio="true">Конечно иду!</label>
+       <label class="btn btn-primary" ng-model="$ctrl.answer.isReady" uib-btn-radio="false"> Я не пойду</label>
    </div>
 
-   <div ng-show="answer.isReady">
+   <div ng-show="$ctrl.answer.isReady">
      <h4>Какие напитки предпочитаешь?</h4>
      <div class="drinks">
-       <select class="form-control" ng-model="drinks" ng-options="opt for opt in [1,2 ,3]"></select>
+       <select class="form-control" ng-model="$ctrl.answer.drinks"
+       ng-options="item as item.name for item in $ctrl.invite.drinks track by item.drink_id ">
+       </select>
      </div>
    </div>
-
-
-
 </form>
-<br>
-{{ $ctrl.items }}
+
+<hr>
+<p>Результат:</p>
+{{ $ctrl.answer }}
+
+
+<hr>
+{{ $ctrl.invite }}
+
 
 </div>
 <div class="modal-footer">

@@ -6,12 +6,38 @@ const Event = require('../models/events.js');
 const Drinks = require('../models/drinks.js');
 
 const validate = require('../validators/event.js');
-
 const authRequire = require('../middleware/authRequire.js');
 
 //Сохранение приглашения,для отправки при ошибках валидации
 let paramsInvite;
 
+router.post('/:id', function(req, res) {
+  console.log( "запрос на сохранение ответа пользователя");
+
+  const userAnswer = req.body;
+  console.log('userAnswer');
+  console.log(userAnswer);
+
+  const inviteId = req.params.id;
+  console.log(inviteId);
+
+  Event.update(
+    {"invites._id": inviteId},
+    {
+      $set: {
+      "invites.$.answered": true,
+      "invites.$.isReady": userAnswer.isReady,
+      "invites.$.drinks": userAnswer.drinks
+    }})
+    .then( (result) => {
+      console.log("result.invites")
+      console.log(result)
+    });
+
+
+});
+
+/*
 
 //Получаем Id Invite
 router.get('/:id', authRequire, function(req, res, next) {
@@ -39,7 +65,7 @@ router.get('/:id', authRequire, function(req, res, next) {
         drinks: result.drinks,
         }
 
-     return  res.render('invite', paramsInvite);
+     return res.render('invite', paramsInvite);
      })
      .catch( err => {
         console.log(err);
@@ -47,7 +73,7 @@ router.get('/:id', authRequire, function(req, res, next) {
 });
 
 
-
+/*
 router.post('/:id', authRequire, function(req, res) {
   const inviteId = req.params.id;
 
@@ -102,5 +128,6 @@ router.post('/:id', authRequire, function(req, res) {
         });
     });
 });
+*/
 
 module.exports = router;
