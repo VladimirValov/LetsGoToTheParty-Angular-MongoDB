@@ -24,14 +24,12 @@ router.post("/", function (req, res) {
    console.log(validateError );
 
    if ( Object.keys( validateError ).length ) {
-      return res.render('formLogin', validateError );
+      return res.send(validateError );
     }
 
 
   console.log("Форма заполнена корректно");
 
-  //Добавление пользователя в базу
-  let newUser = new User( paramsUser );
 
   User.findOne({ email: paramsUser.email })
     .then( (user) => {
@@ -40,10 +38,10 @@ router.post("/", function (req, res) {
       if ( !user ) {
         console.log("Такого пользователя в базе не обнаружено");
 
-         return res.render ('formLogin',{
-           email: "Такого пользователя в базе не обнаружено"
+         return res.send ({ email: "Такого пользователя в базе не обнаружено"
          });
       }
+
 
       if ( user.password == paramsUser.password ) {
         console.log("Успешная авторизация");
@@ -52,13 +50,16 @@ router.post("/", function (req, res) {
 
         req.session.idUser = user._id;
 
-        res.redirect("/");
+        res.send({
+          name: user.firstName + " " + user.lastName,
+          id: user._id
+        });
       }
 
       else {
         console.log("неверный пароль");
 
-        return res.render ('formLogin',{ password: "Неверный пароль" });
+        return res.send({ password: "Неверный пароль" });
       }
   });
 });

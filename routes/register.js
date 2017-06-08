@@ -21,8 +21,7 @@ router.post("/", function (req, res) {
     email: req.body.email,
     firstName: req.body.firstName,
     lastName: req.body.lastName,
-    password: req.body.password,
-    passwordRepeat: req.body.passwordRepeat
+    password: req.body.password
   }
 
 
@@ -30,7 +29,7 @@ router.post("/", function (req, res) {
    console.log( validateError );
 
    if ( Object.keys( validateError ).length ) {
-      return res.render('formRegister', validateError );
+      return res.status(401).send(validateError );
     }
 
 
@@ -43,12 +42,9 @@ router.post("/", function (req, res) {
         console.log("Учетная запись успешно создана", user);
 
         req.session.idUser = user._id;
-
-        res.redirect('/');
+        res.status(201).send(user);
     })
     .catch( (err) => { console.log(err) } );
-
-
 });
 
 module.exports = router;

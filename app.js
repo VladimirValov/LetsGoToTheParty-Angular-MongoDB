@@ -13,21 +13,22 @@ const favicon = require('serve-favicon');
 const mongoose = require('mongoose');
 const urlDB = require('./config.json')
 
-const PORT = process.env.VCAP_APP_PORT || 7000;
+const PORT = process.env.VCAP_APP_PORT || 3000;
 const app = express();
 
 
 //Route
-const indexRoute = require('./routes/index');
-
+//const indexRoute = require('./routes/index');
+const usersRoute = require('./routes/users.js');
 const loginRoute = require('./routes/login.js');
 const registerRoute = require('./routes/register.js');
-const logoutRoute = require('./routes/logout.js');
+//const logoutRoute = require('./routes/logout.js');
 
-const createEventRoute = require('./routes/createEvent.js');
+const eventsRoute = require('./routes/events.js');
 const inviteRoute = require('./routes/invite.js');
 
 const drinksRoute = require('./routes/drinks.js');
+
 
 
 
@@ -39,7 +40,7 @@ app.use(session({
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.set('view engine', 'pug');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -54,20 +55,22 @@ app.use(function(err, req, res, next) {
   next();
 });
 
-app.use('/', indexRoute);
-app.use('/login', loginRoute );
-app.use('/register', registerRoute );
-app.use('/logout', logoutRoute );
+app.use('/users', usersRoute);
+// app.use('/', indexRoute);
+app.use('/login', loginRoute);
+app.use('/register', registerRoute);
+//app.use('/logout', logoutRoute);
 
-app.use('/createEvent', createEventRoute );
-app.use('/invite/', inviteRoute );
+app.use('/events', eventsRoute);
+app.use('/invite/', inviteRoute);
+app.use('/drinks/', drinksRoute);
 
-app.use('/drinks/', drinksRoute );
+
 
 
 app.use(function(err, req, res, next) {
   res.locals.message = err.message;
-  res.render('error');
+  res.send('error');
 });
 
 

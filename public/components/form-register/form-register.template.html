@@ -1,0 +1,45 @@
+ <h2>Форма регистрации</h2>
+ <hr>
+ {{$ctrl.errorValidate}}
+ <hr>
+<form novalidate name="form">
+  <div class="form-group">
+    <label>Имя</label>
+    <input type="text" ng-model="user.firstName" name="firstName" class="form-control" required placeholder="firstName">
+    <div ng-show="form.$submitted || form.firstName.$touched" class="error">
+      <span ng-show="form.firstName.$error.required">Введите имя</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label>Фамилия</label>
+    <input type="text" ng-model="user.lastName" name="lastName" class="form-control" required placeholder="lastName">
+    <div ng-show="form.$submitted || form.lastName.$touched"  class="error">
+      <span ng-show="form.lastName.$error.required">Введите фамилию</span>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label>Email</label>
+    <input type="email" required ng-model="user.email" name="email" class="form-control" placeholder="mail@mail.ru">
+    <div ng-show="form.$submitted || form.email.$touched"  class="error">
+      <span ng-show="form.email.$error.required">Введите email</span>
+      <span ng-show="form.email.$error.email">Введите корректный email</span>
+    </div>
+  </div>
+
+
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" ng-model="user.password" name="password" class="form-control" required placeholder="Dlk32jlki4">
+    <div ng-show="form.$submitted || form.email.$touched"  class="error">
+      <span ng-show="form.password.$error.required">Введите пароль</span>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-success" type="submit" ng-click="$ctrl.register(user, form)">Зарегистрироваться</button>
+    <a ui-sref="login">У меня есть Логин и Пароль</a>
+  </div>
+</form>

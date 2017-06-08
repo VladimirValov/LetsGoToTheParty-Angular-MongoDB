@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 const mongoose = require('mongoose');
-const Drink = require('../models/drinks.js');
+const Drinks = require('../models/drinks.js');
 const validate = require('../validators/drinks.js');
 
 let allDrinks;
@@ -11,10 +11,18 @@ let allDrinks;
 router.get("/", function (req, res) {
 
 
-  Drink.find({})
-    .then( (drinks) => {
-        console.log("Успешно найдено", drinks);
-        res.render('drinks', {drinks});
+  Drinks.find({})
+    .then(list => {
+        console.log("Успешно найдено", list);
+
+        let drinks = list.map(el => {
+          return {
+            drink_id : el._id,
+            name: el.name
+           }
+        })
+
+        res.send(drinks);
     })
     .catch( (err) => { console.log(err) } );
 
@@ -40,7 +48,7 @@ router.post("/", function (req, res) {
 
   console.log("Форма заполнена корректно");
 
-  new Drink( paramsDrink ).save()
+  new Drinks( paramsDrink ).save()
     .then( (drink) => {
         console.log("Успешно сохранено", drink);
         res.redirect('/drinks');
