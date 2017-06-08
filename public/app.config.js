@@ -5,6 +5,11 @@ angular.module('partyApp').config(function($stateProvider) {
     url: '/login',
     component: 'formAuth'
   }
+  var registerState = {
+    name: 'register',
+    url: '/register',
+    component: 'formRegister'
+  }
 
   const homeState = {
     name: 'home',
@@ -21,6 +26,8 @@ angular.module('partyApp').config(function($stateProvider) {
   }
 
   $stateProvider.state(authState);
+  $stateProvider.state(registerState);
+
   $stateProvider.state(homeState);
   $stateProvider.state(logoutState);
 

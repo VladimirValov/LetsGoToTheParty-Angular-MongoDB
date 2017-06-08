@@ -1,3 +1,9 @@
+angular.module('formAuth').component('formAuth', {
+  templateUrl: 'components/form-auth/form-auth.template.html',
+  controller: FormAuthController
+})
+
+
 function FormAuthController($http, Auth,  $state) {
   console.log('Auth.getUser()');
   console.log(Auth.getUser());
@@ -22,9 +28,3 @@ function FormAuthController($http, Auth,  $state) {
     })
   }
 }
-
-
-angular.module('formAuth').component('formAuth', {
-  templateUrl: 'components/form-auth/form-auth.template.html',
-  controller: FormAuthController
-})

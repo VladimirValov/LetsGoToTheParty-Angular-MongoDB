@@ -21,7 +21,7 @@ function formRegister (user) {
   checkField( "lastName", user.lastName, rules.alphabet, errorValidate );
   checkField( "password", user.password, rules.alphaNum, errorValidate );
 
-  checkFieldEqual ("password", user.password, user.passwordRepeat, errorValidate, "Пароли не совпадают" )
+  //checkFieldEqual ("password", user.password, user.passwordRepeat, errorValidate, "Пароли не совпадают" )
 
   console.log("Валидация завершена");
   return errorValidate;

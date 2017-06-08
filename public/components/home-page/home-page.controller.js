@@ -12,18 +12,22 @@ angular.module('homePage').controller('HomePageController', function (Auth, $sta
     console.log("Требуется авторизация!");
     $state.go('login');
   }
-
-  // Запрос всех приглашений пользователя
-
-  $http.get('/users/' + self.user.id + "/invites").then(function (response) {
-    console.log(response.data);
-    self.allInvites = response.data;
-  });
+  else {
+    // Запрос всех приглашений пользователя
 
 
-  $http.get('/users/' + self.user.id + "/events").then(function (response) {
-    console.log(response);
-    self.events = response.data
-  });
+    $http.get('/users/' + self.user.id + "/invites").then(function (response) {
+      console.log(response.data);
+      self.allInvites = response.data;
+    });
+
+
+    $http.get('/users/' + self.user.id + "/events").then(function (response) {
+      console.log(response);
+      self.events = response.data
+    });
+  }
+
+
 
 });

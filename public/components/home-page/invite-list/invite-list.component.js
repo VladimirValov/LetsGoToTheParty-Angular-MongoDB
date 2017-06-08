@@ -7,7 +7,7 @@ function InviteListController() {
 
     this.labelbutton = "Изменить решение"
 
-    if( this.answered == null) {
+    if( this.isready == null) {
       this.labelbutton = "Ответить на приглашение";
     }
   }

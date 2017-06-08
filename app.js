@@ -21,7 +21,7 @@ const app = express();
 //const indexRoute = require('./routes/index');
 const usersRoute = require('./routes/users.js');
 const loginRoute = require('./routes/login.js');
-//const registerRoute = require('./routes/register.js');
+const registerRoute = require('./routes/register.js');
 //const logoutRoute = require('./routes/logout.js');
 
 const eventsRoute = require('./routes/events.js');
@@ -58,7 +58,7 @@ app.use(function(err, req, res, next) {
 app.use('/users', usersRoute);
 // app.use('/', indexRoute);
 app.use('/login', loginRoute);
-//app.use('/register', registerRoute);
+app.use('/register', registerRoute);
 //app.use('/logout', logoutRoute);
 
 app.use('/events', eventsRoute);

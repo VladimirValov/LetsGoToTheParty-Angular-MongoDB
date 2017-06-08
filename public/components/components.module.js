@@ -1,1 +1,1 @@
-angular.module('components',['formAuth', 'homePage']);
+angular.module('components',['formAuth', 'homePage', 'formRegister']);
