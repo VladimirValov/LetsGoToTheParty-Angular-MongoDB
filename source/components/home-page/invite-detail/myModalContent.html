@@ -1,0 +1,38 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="modal-title">Событие: {{ $ctrl.invite.title }}</h3>
+</div>
+
+<div class="modal-body" id="modal-body">
+Место проведения: {{ $ctrl.invite.place }}
+
+<form>
+  <div class="form-group">
+   <h4>Пойдешь на это событие?</h4>
+   <div class="btn-group">
+       <label class="btn btn-success" ng-model="$ctrl.answer.isReady" uib-btn-radio="true">Конечно иду!</label>
+       <label class="btn btn-primary" ng-model="$ctrl.answer.isReady" uib-btn-radio="false"> Я не пойду</label>
+   </div>
+ </div>
+
+   <div ng-show="$ctrl.answer.isReady">
+     <div class="form-group">
+     <h4>Какие напитки предпочитаешь?</h4>
+     <div class="drinks">
+       <select class="form-control" ng-model="$ctrl.answer.drinks"
+       ng-options="item as item.name for item in $ctrl.invite.drinks track by item.drink_id">
+       </select>
+     </div>
+   </div>
+   </div>
+</form>
+
+<hr>
+<p>Результат:</p>
+{{ $ctrl.answer }}
+
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="$ctrl.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="$ctrl.cancel()">Cancel</button>
+</div>

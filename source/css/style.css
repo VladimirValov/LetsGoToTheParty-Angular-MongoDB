@@ -1,0 +1,18 @@
+
+
+
+.ng-touched.ng-invalid {
+    border: 1px solid red !important;
+}
+
+.ng-submitted .ng-invalid {
+    border: 1px solid red !important;
+}
+.error {
+  color:red;
+}
+
+select.ng-valid, input.ng-valid {
+  background-color: #c8ffd6 !important;
+  background-color: rgba(233, 255, 48, 0.27) !important;
+}
