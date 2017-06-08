@@ -6,19 +6,24 @@ angular.module('formRegister').component('formRegister', {
 function FormRegisterController($http, $state) {
   this.errorValidate ;
 
-  this.register = function(user) {
+  this.register = function(user, form) {
+    console.log('form.$invalid', form.$invalid);
+    console.log(form.firstName.$error.required);
     console.log(user);
 
-    $http.post('/register', user).then(response =>{
-      console.log(response);
-      this.errorValidate = "OKKKKKKKK"
-      $state.go('home');
+    if(form.$valid) {
+      $http.post('/register', user).then(response =>{
+        console.log(response);
+        this.errorValidate = "OKKKKKKKK"
+        $state.go('home');
 
-    }).catch(err => {
-      console.log(err);
-      console.log(err.data);
-      this.errorValidate = err.data
-    });
+      }).catch(err => {
+        console.log(err);
+        console.log(err.data);
+        this.errorValidate = err.data
+      });
+    }
+
 
 
 
