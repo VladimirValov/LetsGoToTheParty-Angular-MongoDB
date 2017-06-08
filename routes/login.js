@@ -37,9 +37,8 @@ router.post("/", function (req, res) {
 
       if ( !user ) {
         console.log("Такого пользователя в базе не обнаружено");
-
-         return res.send ({ email: "Такого пользователя в базе не обнаружено"
-         });
+         res.status(401).send("Пользователя с адресом: " + paramsUser.email + " в базе не обнаружено" );
+         return;
       }
 
 

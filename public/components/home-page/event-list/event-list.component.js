@@ -54,19 +54,18 @@ function modalComponentController ($http) {
     console.log(response.data);
 
     self.drinks = response.data;
-
   });
 
 
   self.$onInit = function () {
-
-    self.newEvent = {};
-    self.newEvent.author_id = self.resolve.author;
   };
 
-  self.ok = function () {
+  self.ok = function (newEvent) {
 
-    $http.post('/events/',  self.newEvent ).then(function (response) {
+    newEvent.author_id = self.resolve.author;
+    console.log('newEvent', newEvent);
+
+    $http.post('/events/', newEvent ).then(function (response) {
       console.log(response.data);
     });
 

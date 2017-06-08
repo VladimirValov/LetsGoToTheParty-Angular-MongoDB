@@ -9,6 +9,7 @@ const Users = require('../models/users.js');
 
 /* Список событий на которые пригласили пользователя */
 router.get('/:user_id/invites', function (req, res, next) {
+  console.log("Запрос приглашений");
   let user_id = req.params.user_id;
   console.log(user_id);
 

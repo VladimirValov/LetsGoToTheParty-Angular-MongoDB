@@ -15,7 +15,6 @@ angular.module('homePage').controller('HomePageController', function (Auth, $sta
   else {
     // Запрос всех приглашений пользователя
 
-
     $http.get('/users/' + self.user.id + "/invites").then(function (response) {
       console.log(response.data);
       self.allInvites = response.data;

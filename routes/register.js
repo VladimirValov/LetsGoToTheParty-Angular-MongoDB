@@ -34,17 +34,34 @@ router.post("/", function (req, res) {
 
 
   console.log("Форма заполнена корректно");
+  console.log(paramsUser.email);
 
-  let newUser = new User( paramsUser );
+  User.findOne({email: paramsUser.email}).then(result => {
+    console.log(result);
 
-  newUser.save()
-    .then( (user) => {
-        console.log("Учетная запись успешно создана", user);
+    if (result) {
+      res.status(401).send("Пользователь с email " + paramsUser.email + " существует, введите другой или авторизуйтесь");
+      return ;
+    }
 
-        req.session.idUser = user._id;
-        res.status(201).send(user);
-    })
-    .catch( (err) => { console.log(err) } );
+
+    let newUser = new User( paramsUser );
+
+    newUser.save()
+      .then( (user) => {
+          console.log("Учетная запись успешно создана", user);
+
+          req.session.idUser = user._id;
+          res.status(201).send(user);
+      })
+  }).catch( (err) => {
+    console.log(err)
+    res.status(400).send(err)
+   } );
+
+/*
+
+     */
 });
 
 module.exports = router;

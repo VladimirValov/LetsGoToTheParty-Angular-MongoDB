@@ -1,6 +1,8 @@
  <h2>Форма регистрации</h2>
  <hr>
- {{$ctrl.errorValidate}}
+ <div class="error">
+   {{$ctrl.errorValidate}}
+ </div>
  <hr>
 <form novalidate name="form">
   <div class="form-group">
@@ -39,7 +41,7 @@
   </div>
 
   <div class="form-group">
-    <button class="btn btn-success" type="submit" ng-click="$ctrl.register(user, form)">Зарегистрироваться</button>
+    <button class="btn btn-success" type="submit" ng-click="$ctrl.register(user)"  ng-disabled="form.$invalid">Зарегистрироваться</button>
     <a ui-sref="login">У меня есть Логин и Пароль</a>
   </div>
 </form>

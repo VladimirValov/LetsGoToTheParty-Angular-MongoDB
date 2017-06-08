@@ -8,3 +8,8 @@
 .error {
   color:red;
 }
+
+select.ng-valid, input.ng-valid {
+  background-color: #c8ffd6 !important;
+  background-color: rgba(233, 255, 48, 0.27) !important;
+}

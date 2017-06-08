@@ -4,9 +4,9 @@ angular.module('formAuth').component('formAuth', {
 })
 
 
-function FormAuthController($http, Auth,  $state) {
-  console.log('Auth.getUser()');
-  console.log(Auth.getUser());
+function FormAuthController($http, Auth, $state) {
+
+  this.authError;
 
   this.login = function(user) {
     console.log('Auth.getUser()');
@@ -17,14 +17,13 @@ function FormAuthController($http, Auth,  $state) {
     $http.post('/login', user).then(function(response) {
       console.log(response.data);
 
-
       if(response.data.id) {
-        console.log(response.data.id);
-
         Auth.setUser(response.data);
         $state.go('home');
-
       }
+    }).catch(err => {
+      console.log(err.data);
+      this.authError = err.data;
     })
   }
 }
