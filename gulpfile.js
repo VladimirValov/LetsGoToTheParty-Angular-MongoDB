@@ -22,7 +22,7 @@ gulp.task('lib', function() {
   .pipe(debug({title: 'src'}))
   .pipe(concat("lib.js"))
   .pipe(debug({title: 'concat'}))
-  .pipe(uglify({ mangle: false }))
+  .pipe(uglify())
   .pipe(debug({title: 'uglify'}))
   .pipe(gulp.dest('public/lib'));
 })
@@ -52,8 +52,6 @@ gulp.task('html', function() {
   .pipe(debug({title: 'src'}))
   .pipe(gulp.dest('public'));
 })
-
-
 
 
 gulp.task('css', function() {
