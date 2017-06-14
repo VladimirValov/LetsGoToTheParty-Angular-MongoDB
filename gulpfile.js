@@ -73,4 +73,3 @@ gulp.task('build', ['lib', 'html', 'css', 'js'], function() {
   gulp.watch('source/css/*.css', ['css']);
   gulp.watch('source/**/*.js', ['js']);
 });
-//gulp.task('build', ['html', 'css', 'js']);
