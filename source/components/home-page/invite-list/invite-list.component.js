@@ -11,7 +11,6 @@ function InviteListController() {
       this.labelbutton = "Ответить на приглашение";
     }
   }
-
 }
 
 

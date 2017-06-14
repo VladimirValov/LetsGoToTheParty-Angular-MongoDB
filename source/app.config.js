@@ -1,11 +1,13 @@
 angular.module('partyApp').config(function($stateProvider) {
+"ngInject";
 
-  var authState = {
+  const authState = {
     name: 'login',
     url: '/login',
     component: 'formAuth'
   }
-  var registerState = {
+
+  const registerState = {
     name: 'register',
     url: '/register',
     component: 'formRegister'
@@ -15,9 +17,9 @@ angular.module('partyApp').config(function($stateProvider) {
     name: 'home',
     url: '/',
     component: 'homePage'
-    //,
-    //onEnter: checkAuth
+    //, onEnter: checkAuth
   }
+
   const logoutState = {
     name: 'logout',
     url: '/logout',
@@ -31,7 +33,9 @@ angular.module('partyApp').config(function($stateProvider) {
   $stateProvider.state(homeState);
   $stateProvider.state(logoutState);
 
-
+  let xxx = {
+     $stateProvider: () => $stateProvider
+}
 
 
   function checkAuth( Auth, $state ) {
@@ -43,12 +47,10 @@ angular.module('partyApp').config(function($stateProvider) {
   }
 
   function logoutFunc( Auth, $state ) {
-
     console.log(Auth.getUser());
 
     Auth.setUser("");
 
     console.log(Auth.getUser());
   }
-
 });

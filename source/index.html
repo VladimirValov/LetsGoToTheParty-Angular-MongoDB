@@ -1,79 +1,27 @@
 <!doctype html>
 <html lang="ru" ng-app="partyApp">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel='stylesheet' href='css/bootstrap.css' />
-    <link rel='stylesheet' href='css/style.css' />
+  <link rel='stylesheet' href='css/style.css' />
+  <script src="lib/lib.js" charset="utf-8"></script>
+  <script src="js/script.js" charset="utf-8"></script>
 
-    <script src="./lib/angular.min.js" charset="utf-8"></script>
-    <script src="./lib/angular-ui-router.min.js" charset="utf-8"></script>
-
-    <script src="./lib/angular-animate.js" charset="utf-8"></script>
-    <script src="./lib/angular-sanitize.js" charset="utf-8"></script>
-
-    <script src="lib/ui-bootstrap-tpls-2.5.0.min.js" charset="utf-8"></script>
-
-    <script src="./app.module.js" charset="utf-8"></script>
-    <script src="./app.config.js" charset="utf-8"></script>
-
-    <script src="js/script.js" charset="utf-8"></script>
-
-    <!-- Core-->
-
-    <script src="core/core.module.js" charset="utf-8"></script>
-    <script src="core/auth/auth.module.js" charset="utf-8"></script>
-    <script src="core/auth/auth.service.js" charset="utf-8"></script>
-
-    <!--Components -->
-
-    <script src="components/components.module.js" charset="utf-8"></script>
-
-    <script src="components/form-auth/form-auth.module.js" charset="utf-8"></script>
-    <script src="components/form-auth/form-auth.component.js" charset="utf-8"></script>
-
-    <script src="components/form-register/form-register.module.js" charset="utf-8"></script>
-    <script src="components/form-register/form-register.component.js" charset="utf-8"></script>
-
-    <script src="components/home-page/home-page.module.js" charset="utf-8"></script>
-    <script src="components/home-page/home-page.component.js" charset="utf-8"></script>
-    <script src="components/home-page/home-page.controller.js" charset="utf-8"></script>
-
-    <script src="components/home-page/user-nav/user-nav.module.js" charset="utf-8"></script>
-    <script src="components/home-page/user-nav/user-nav.component.js" charset="utf-8"></script>
-
-    <script src="components/home-page/invite-list/invite-list.module.js" charset="utf-8"></script>
-    <script src="components/home-page/invite-list/invite-list.component.js" charset="utf-8"></script>
-
-    <script src="components/home-page/invite-detail/invite-detail.module.js" charset="utf-8"></script>
-    <script src="components/home-page/invite-detail/invite-detail.component.js" charset="utf-8"></script>
-
-    <script src="components/home-page/event-list/event-list.module.js" charset="utf-8"></script>
-    <script src="components/home-page/event-list/event-list.component.js" charset="utf-8"></script>
-
-    <script src="components/home-page/event-detail/event-detail.module.js" charset="utf-8"></script>
-    <script src="components/home-page/event-detail/event-detail.component.js" charset="utf-8"></script>
-
-
-    <title> Angular </title>
-
-  </head>
-  <body>
-    <hr>
-    <div class="container-fluid">
-      <ui-view></ui-view>
-    </div>
-
-
-    <hr>
-    <div class="container-fluid">
-     Cостояния:
+  <title> Angular </title>
+</head>
+<body>
+  <hr>
+  <div class="container-fluid">
+    <ui-view></ui-view>
+  </div>
+  <hr>
+  <div class="container-fluid">
+    Cостояния:
     <a ui-sref="login">Авторизация</a>  |
     <a ui-sref="register">Регистрация</a> |
     <a ui-sref="home">Домашняя страница</a> |
     <a ui-sref="logout">Выход</a>
   </div>
-
-  </body>
+</body>
 </html>

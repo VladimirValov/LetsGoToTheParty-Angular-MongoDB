@@ -1,44 +1,27 @@
 <!doctype html>
 <html lang="ru" ng-app="partyApp">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel='stylesheet' href='css/style.css' />
+  <link rel='stylesheet' href='css/style.css' />
+  <script src="lib/lib.js" charset="utf-8"></script>
+  <script src="js/script.js" charset="utf-8"></script>
 
-    <script src="./lib/angular.min.js" charset="utf-8"></script>
-    <script src="./lib/angular-ui-router.min.js" charset="utf-8"></script>
-
-    <script src="./lib/angular-animate.js" charset="utf-8"></script>
-    <script src="./lib/angular-sanitize.js" charset="utf-8"></script>
-
-    <script src="lib/ui-bootstrap-tpls-2.5.0.min.js" charset="utf-8"></script>
-
-
-
-    <script src="js/script.js" charset="utf-8"></script>
-
-
-
-
-    <title> Angular </title>
-
-  </head>
-  <body>
-    <hr>
-    <div class="container-fluid">
-      <ui-view></ui-view>
-    </div>
-
-
-    <hr>
-    <div class="container-fluid">
-     Cостояния:
+  <title> Angular </title>
+</head>
+<body>
+  <hr>
+  <div class="container-fluid">
+    <ui-view></ui-view>
+  </div>
+  <hr>
+  <div class="container-fluid">
+    Cостояния:
     <a ui-sref="login">Авторизация</a>  |
     <a ui-sref="register">Регистрация</a> |
     <a ui-sref="home">Домашняя страница</a> |
     <a ui-sref="logout">Выход</a>
   </div>
-
-  </body>
+</body>
 </html>

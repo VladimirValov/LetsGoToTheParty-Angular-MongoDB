@@ -1,7 +1,3 @@
-function EventDetailController() {
-  const ctrl = this;
-}
-
 angular.module('eventDetail').component('eventDetail', {
   templateUrl: "components/home-page/event-detail/event-detail.template.html",
   controller: EventDetailController,
@@ -9,3 +5,6 @@ angular.module('eventDetail').component('eventDetail', {
     event: '='
   }
 });
+
+function EventDetailController() {
+}

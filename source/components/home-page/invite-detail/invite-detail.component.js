@@ -55,11 +55,9 @@ function ModalComponentController ($http) {
     }
 
     if(self.answer.isReady){
-      console.log(self.answer.drinks);
       delete self.answer.drinks._id;
       console.log(self.answer.drinks);
     }
-
 
 
     $http.post('/invite/' + inviteId, self.answer).then(function (response) {

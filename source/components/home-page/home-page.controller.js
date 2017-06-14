@@ -12,7 +12,8 @@ angular.module('homePage').controller('HomePageController', function (Auth, $sta
     console.log("Требуется авторизация!");
     $state.go('login');
   }
-  else {
+  else
+  {
     // Запрос всех приглашений пользователя
 
     $http.get('/users/' + self.user.id + "/invites").then(function (response) {

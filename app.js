@@ -13,7 +13,7 @@ const favicon = require('serve-favicon');
 const mongoose = require('mongoose');
 const urlDB = require('./config.json')
 
-const PORT = process.env.VCAP_APP_PORT || 3000;
+const PORT = process.env.VCAP_APP_PORT || 4000;
 const app = express();
 
 

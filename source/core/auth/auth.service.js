@@ -1,5 +1,4 @@
 angular.module('core.auth').factory('Auth', [ function() {
-
   var user;
 
   return {
